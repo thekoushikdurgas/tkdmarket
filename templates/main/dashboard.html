@@ -1,0 +1,66 @@
+{% extends 'main/TKD.html' %}
+<!-- {% load static %} -->
+{% block css %}
+<!-- <link href="{% static 'plugins/morrisjs/morris.css' %}" rel="stylesheet"> -->
+{% endblock css %}
+{% block content2 %}
+<div class="page-title-overlap bg-dark pt-4">
+</div>
+<div class="container mb-5 pb-3">
+  <div class="bg-light shadow-lg rounded-3 overflow-hidden">
+    <div class="row">
+      <!-- Sidebar-->
+      <aside class="col-lg-4 pe-xl-5">
+        <div class="d-md-flex flex-column justify-content-between align-items-center text-center text-md-start p-4 border-end">
+          <div class="d-md-flex align-items-center w-100 flex-column">
+            <div class="img-thumbnail rounded-circle position-relative flex-shrink-0 mx-auto mb-2 mx-md-0 mb-md-0" style="width: 6.375rem;"><span class="badge bg-warning position-absolute end-0 mt-n2" data-bs-toggle="tooltip" title="Reward points">{{userdeatails.userrewardpoints}}</span><img class="rounded-circle" src="/tkdproduct/{{userdeatails.userpic}}" alt="{{userdeatails.username}}" width="90" height="90"></div>
+            <div class="text-center">
+              <h3 class="fs-base mb-0">{{userdeatails.username}}</h3><span class="text-accent fs-sm">{{userdeatails.useremail}}</span>
+            </div>
+          </div>
+          <a class="btn btn-primary d-lg-none mb-2 mt-3 mt-md-0" href="#account-menu" data-bs-toggle="collapse" aria-expanded="false"><i class="ci-menu me-2"></i>Account menu</a>
+        </div>
+        <div class="h-100 border-end mb-2">
+          <div class="d-lg-block collapse" id="account-menu">
+            {% for key, value in userdeatails.navlink.items %}
+            <div class="bg-secondary p-4">
+              <h3 class="fs-sm mb-0 text-muted">{{key}}</h3>
+            </div>
+            <ul class="list-unstyled mb-0">
+              {% for j in value %}
+              <li class="{{j.class}}"><a class="nav-link-style d-flex align-items-center px-4 py-3 {{j.active}}" href="{{j.link}}"><i class="{{j.icon}} opacity-60 me-2"></i><span>{{j.name}}</span></a></li>
+              {% endfor %}
+            </ul>
+            {% endfor %}
+          </div>
+        </div>
+      </aside>
+      <div class="toast fade" role="alert" aria-live="assertive" aria-atomic="true" id="modelalert"><div class="toast-header text-white" id="modelalertbackgroud"><i class="fa-solid" id="modelalerticon"></i><span class="fw-medium me-auto" id="modelalertheader"></span><button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button></div><div class="toast-body" id="modelalertmessage">{{i.message}}</div></div>
+      <section class="col-lg-8 pt-lg-4 pb-4 mb-3">
+        <div class="pt-2 px-4 ps-lg-0 pe-xl-5">
+          <div class="container d-lg-flex justify-content-between py-1 py-lg-1 border-bottom mb-2">
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2 d-none d-md-block">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-dark flex-lg-nowrap justify-content-center justify-content-lg-start">
+                  <li class="breadcrumb-item"><a class="text-nowrap" href="../../../"><i class="ci-home"></i><span>Home</span></a></li>
+                  <li class="breadcrumb-item text-nowrap"><a href="#"><i class="{{userdeatails.usertitleicon}}"></i><span>{{userdeatails.usertitle}}</span></a></li>
+                  <li class="breadcrumb-item text-nowrap active" aria-current="page"><i class="{{userdeatails.usertitleicon1}}"></i><span>{{userdeatails.usertitle1}}</span></li>
+                </ol>
+              </nav>
+            </div>
+            <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+              <h1 class="h3 mb-0"><i class="{{userdeatails.usertitleicon1}} me-2"></i><span>{{userdeatails.usertitle1}}</span></h1>
+            </div>
+          </div>
+          <div class="tab-content">{% block content3 %}{% endblock content3 %}</div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock content2 %}
+{% block js %}
+<script src="{{vendor}}/jquerypayment/jquery.payment.js"></script>
+<script src="{{vendor}}/card/dist/card.js"></script>
+<script src="{{js}}/profile.js"></script>
+{% endblock js %}

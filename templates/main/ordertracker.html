@@ -1,0 +1,98 @@
+{% extends 'main/TKD.html' %}
+{% load static %}
+{% block css %}
+<!-- <link href="{% static 'plugins/morrisjs/morris.css' %}" rel="stylesheet"> -->
+{% endblock css %}
+{% block content2 %}
+<div class="page-title-overlap bg-dark pt-4">
+</div>
+<div class="container pb-5 mb-sm-4">
+  <div class="card border shadow bg-white rounded-3 p-4 ms-lg-auto">
+    {% for i in userdeatails.Requirements.orderdeatails %}
+    <div class="container text-center w-100 py-2 py-lg-3">
+      <!-- <div class="order-lg-1 pe-lg-4 text-center text-lg-start"> -->
+        <h1 class="h5 mb-0">Tracking id#<span class="h6 fw-normal">{{userdeatails.Requirements.orderdeatailsno}}</span></h1>
+      <!-- </div> -->
+    </div>
+    <div class="row gx-4">
+      <div class="col-md-4 mb-4">
+        <div class="shadow h-100 p-4 rounded-3 w-100 mb-2 text-center">
+          <!-- <div class="h-100 p-4 rounded-3 shadow w-100 mb-2 text-center"> -->
+            <div class="d-flex flex-column align-items-center">
+              <div class="flex-shrink-0"><a href="/productdetails/{{i.productdetails.id}}"><img src="/tkdproduct/{{i.productdetails.image}}" width="200" alt="{{i.productdetails.name}}"></a></div>
+              <!-- <div class="ps-2 d-flex flex-column align-items-center"> -->
+              <a class="widget-product-title h6" href="/productdetails/{{i.productdetails.id}}">{{i.productdetails.name}}</a>
+              <div class="widget-product-meta text-accent d-flex">
+                <span>₹{{i.productdetails.price_save}} <span class="text-muted"><i class="fa-light fa-xmark fa-fw"></i> {{i.Productquantity}}</span></span>
+                <span><i class="fa-regular fa-equals fa-fw"></i></span>
+                <span><span><strong>₹{{i.total_price}}</strong></span></span>
+              </div>
+                <!-- <div class="fs-sm">
+                  <span>ORDER PLACED :-</span>
+                  <span class="fs-xs">{{i.created_at}}</span>
+                </div> -->
+              <!-- </div> -->
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="shadow h-100 p-4 rounded-3">
+          <h4 class="h6 fw-medium text-dark me-2">Shipped via:</h4>
+          <ul class="list-unstyled fs-sm">
+            {% for i in userdeatails.Requirements.orderdeatailsaddressdetails %}
+            <li><span class="text-muted">Client:&nbsp;</span>{{i.username}}</li>
+            <li><span class="text-muted">Address:&nbsp;</span>{{i.useraddress}}</li>
+            <li><span class="text-muted">City:&nbsp;</span>{{i.usercity}}-{{i.userzipcode}}</li>
+            <li><span class="text-muted">State:&nbsp;</span>{{i.userstate}}</li>
+            <li><span class="text-muted">Country:&nbsp;</span>{{i.usercountry}}</li>
+            <li><span class="text-muted">Phone:&nbsp;</span>{{userdeatails.userphone}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="shadow p-4 rounded-3 w-100 mb-2 text-center">
+          <h4 class="h6 fw-medium text-dark me-2">Status:</h4>
+          <p class="badge tkdorder-{{i.productstatuscolor}} m-1 accordion text-dark me-2">{{i.productstatus}}</p>
+        </div>
+        <div class="shadow p-4 rounded-3 w-100 mb-2 text-center">
+          <h4 class="h6 fw-medium text-dark me-2">Expected date:</h4>
+          <span class="fw-medium text-dark me-2">{{i.created_at}}</span>
+        </div>
+        <div class="shadow p-4 rounded-3 w-100 mb-2 text-center">
+          <h1 class="h5 mb-0">Order #<a class="h6 fw-normal" href="/order/{{i.orderid}}">{{userdeatails.Requirements.orderdeatailsno}}</a></h1>
+        </div>
+      </div>
+    </div>
+    <div class="h-100 p-4 rounded-3 shadow w-100 mb-2">
+      <div class="order-track tkdtracker-{{i.productstatuscolor}}">
+        {% for i in userdeatails.Requirements.trackingstatuslist %}
+        <div class="order-track-step">
+          <div class="order-track-status">
+            <span class="order-track-status-dot"><i class="{{i.icon}}"></i></span>
+            <span class="order-track-status-line"></span>
+          </div>
+          <div class="order-track-text">
+            <p class="order-track-text-stat">Ordered {{i.status}}</p>
+            <p class="order-track-text-sub m-0">{{i.description}}</p>
+            <p class="order-track-text-sub m-0">{{i.date}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+    <div class="d-sm-flex flex-wrap justify-content-between align-items-center text-center pt-4">
+      <div class="form-check mt-2 me-3">
+        <input class="form-check-input" type="checkbox" id="notify-me" checked>
+        <label class="form-check-label" for="notify-me">Notify me when order is delivered</label>
+      </div>
+      <a class="btn btn-primary btn-sm mt-2" href="/orderlist/all/1/1">View Order Details</a>
+    </div>
+  </div>
+</div>
+{% endblock content2 %}
+{% block js %}
+<script src="{{js}}/profile.js"></script>
+{% endblock js %}

@@ -1,0 +1,90 @@
+{% extends 'main/TKDcheckoutreview.html' %}
+{% load static %}
+{% block contentaddpayrebutton1 %}
+<div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/usercheckoutreviewonce"><i class="ci-arrow-left mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Back to Payment</span><span class="d-inline d-sm-none">Payment</span></a></div>
+<div class="w-50 ps-2"><a class="btn btn-primary d-block w-100 py-2 px-1" href="/usercheckoutcomplete/0"><span class="d-none d-sm-inline">Complete order</span><span class="d-inline d-sm-none">Complete</span><i class="ci-arrow-right mt-sm-0 ms-1"></i></a></div>
+{% endblock contentaddpayrebutton1 %}
+{% block contentaddpayrebutton2 %}
+<div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/usercheckoutreviewonce"><i class="ci-arrow-left mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Back to Payment</span><span class="d-inline d-sm-none">Payment</span></a></div>
+<div class="w-50 ps-2"><a class="btn btn-primary d-block w-100 py-2 px-1" href="/usercheckoutcomplete/0"><span class="d-none d-sm-inline">Complete order</span><span class="d-inline d-sm-none">Complete</span><i class="ci-arrow-right mt-sm-0 ms-1"></i></a></div>
+{% endblock contentaddpayrebutton2 %}
+{% block contentaddpayresidebar %}
+{% for i in userdeatails.Requirements.userbuyproductdeatails %}
+<div class="widget mb-3">
+  <h2 class="widget-title text-center">Order summary</h2>
+</div>
+<ul class="list-unstyled fs-sm pb-2 border-bottom">
+  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span class="text-end" id="totalpricestrong">₹{{i.usertotalprice}}</span></li>
+  <li class="d-flex justify-content-between align-items-center"><span class="me-2">GST:</span><span class="text-end" id="usertotalpricegst">₹{{i.usertotalpricegst}}</span></li>
+  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">₹100.00</span></li>
+  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
+</ul>
+<h3 class="fw-normal text-center my-4" id="usertotalprice">₹{{i.useralltotalprice}}</h3>
+<form class="needs-validation" method="post" novalidate>
+  <div class="mb-3">
+    <input class="form-control" type="text" placeholder="Promo code" required>
+    <div class="invalid-feedback">Please provide promo code.</div>
+  </div>
+  <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
+</form>
+{% endfor %}
+{% endblock contentaddpayresidebar %}
+{% block contentaddpayresidebareview %}
+{% for i in userdeatails.Requirements.userbuyproductdeatails %}
+<div class="row m-1 p-4">
+    <div class="col-sm-3 text-center align-self-center">
+      <img src="/tkdproduct/{{i.image}}" alt="{{i.name}}" srcset="" class="img-fluid" height="150" width="150">
+    </div>
+    <div class="col-sm-9">
+     <div>
+      <div class="d-flex fs-sm flex-row justify-content-between">
+        <div class="h5 product-title fs-base d-flex justify-content-center align-items-center m-0"><a href="/productdetails/{{i.id}}">{{i.name}}</a></div>
+        <div class="text-accent">₹{{i.price_save}}</div>
+      </div>
+      <div class="my-3">
+          <form class="form needs-validation lenghtform" action="/usercheckoutreviewoncesettings/{{i.id}}" method="POST" novalidate>
+              {% csrf_token %}
+              <div class="input-group">
+                  <a class="btn btn-outline-danger btn-sm d-flex justify-content-between align-items-center" type="button" onclick="decrementincrement1(false)"><i class="fa-solid fa-minus fa-fw"></i></a>
+                  <input class="form-control lenghtvalue" type="number" id="quantity{{i.id}}" name="quantity{{i.id}}" min="1" value="{{i.Productquantity}}" readonly="">
+                  <a class="btn btn-outline-success btn-sm d-flex justify-content-between align-items-center" type="button" onclick="decrementincrement1(true)"><i class="fa-solid fa-plus fa-fw"></i></a>
+              </div>
+          </form>
+      </div> 
+      <div class="widget-product-meta text-accent d-flex justify-content-between">
+        <span>₹{{i.price_save}} <span class="text-muted"><i class="fa-light fa-xmark fa-fw"></i> <span id="Productquantity">{{i.Productquantity}}</span></span></span>
+        <span><i class="fa-regular fa-equals fa-fw"></i></span>
+        <span><span><strong id="totalpricestrong1">₹{{i.price_save}}</strong></span></span>
+    </div>
+     </div>
+    </div>
+</div>
+<!-- <div class="d-sm-flex justify-content-between border-bottom m-1 p-4"> -->
+    <!-- <div class="d-sm-flex text-center text-sm-start">
+        <a class="d-inline-block flex-shrink-0 mx-auto me-sm-4" href="/productdetails/{{i.id}}"><img src="/tkdproduct/{{i.image}}" width="160" alt="{{i.name}}"></a>
+        <div class="d-flex flex-column justify-content-around">
+        <h3 class="product-title fs-base mb-2"><a href="/productdetails/{{i.id}}">{{i.name}}</a></h3>
+        <div class="my-3">
+            <form class="form needs-validation lenghtform" action="/usercheckoutreviewoncesettings/{{i.id}}" method="POST" novalidate>
+                {% csrf_token %}
+                <div class="input-group">
+                    <a class="btn btn-outline-danger btn-sm d-flex justify-content-between align-items-center" type="button" onclick="decrementincrement1(false)"><i class="fa-solid fa-minus fa-fw"></i></a>
+                    <input class="form-control lenghtvalue" type="number" id="quantity{{i.id}}" name="quantity{{i.id}}" min="1" value="{{i.Productquantity}}" readonly="">
+                    <a class="btn btn-outline-success btn-sm d-flex justify-content-between align-items-center" type="button" onclick="decrementincrement1(true)"><i class="fa-solid fa-plus fa-fw"></i></a>
+                </div>
+            </form>
+        </div> 
+        <div class="widget-product-meta text-accent d-flex justify-content-between">
+            <span>₹{{i.price_save}} <span class="text-muted"><i class="fa-light fa-xmark fa-fw"></i> <span id="Productquantity">{{i.Productquantity}}</span></span></span>
+            <span><i class="fa-regular fa-equals fa-fw"></i></span>
+            <span><span><strong id="totalpricestrong1">₹{{i.price_save}}</strong></span></span>
+        </div>
+        </div>
+    </div> -->
+    <!-- <div class="d-flex flex-sm-column justify-content-sm-around justify-content-around">
+        <a href="/usercheckoutshipping" class="btn btn-outline-success btn-sm"><i class="ci-edit me-2"></i><span class="fs-sm">Edit</span></a>
+        <a href="/usershopcartsettings/{{i.id}}/0" class="btn btn-outline-danger btn-sm"><i class="fa-light fa-trash-can fa-fw me-2"></i><span class="fs-sm">Remove</span></a>
+    </div> -->
+<!-- </div> -->
+{% endfor %}
+{% endblock contentaddpayresidebareview %}

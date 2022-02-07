@@ -1,0 +1,48 @@
+{% extends 'main/TKDshopbuy.html' %}
+{% load static %}
+{% block contentaddpayre %}
+<!-- <div class="tkdheading w-100 my-3 d-flex"><span class="m-auto w-auto bg-white border rounded-3 shadow py-2 px-3">Choose shipping method</span></div> -->
+<form class="form needs-validation" action="/usercheckoutpayment" method="POST" novalidate id="addressoptionform">
+  {% csrf_token %}
+  <div class="d-flex flex-wrap tkdradios">
+    {% for i in userdeatails.Requirements.addresslists %}
+    <label class="tkdradio" for="basic{{i.id}}">
+      {% if userdeatails.Requirements.addressoptionid == 0 %}
+        {% if i.useraddressprimary %}
+        <input type="radio" name="tkdaddressoption" id="basic{{i.id}}" value="basic{{i.id}}" checked>
+        {% else %}
+        <input type="radio" name="tkdaddressoption" id="basic{{i.id}}" value="basic{{i.id}}">
+        {% endif %}
+      {% else %}
+        {% if userdeatails.Requirements.addressoptionid == i.id %}
+        <input type="radio" name="tkdaddressoption" id="basic{{i.id}}" value="basic{{i.id}}" checked>
+        {% else %}
+        <input type="radio" name="tkdaddressoption" id="basic{{i.id}}" value="basic{{i.id}}">
+        {% endif %}
+      {% endif %}
+      <div class="card m-1 tkdradio-content bg-white border rounded-3 shadow">
+        <div class="card-body tkdradio-details">
+          <h2 class="h6 blog-entry-title">{{i.username}}</h2>
+          <p class="fs-sm">{{i.useraddress}}</p>
+          <p class="fs-sm">{{i.usercity}}, {{i.userzipcode}}</p>
+          <p class="fs-sm">{{i.userstate}}, {{i.usercountry}}</p>
+        </div>
+        <div class="card-footer d-flex align-items-center">
+          {% if i.useraddressprimary %}
+          <a class="badge rounded-pill bg-success">Default</a>
+          {% else %}
+          <a href="/adduseraddressprimary/{{i.userid}}/1/{{i.id}}" class="alert-link fs-xs">Set as Default</a>
+          {% endif %}
+          <div class="ms-auto text-nowrap">
+            <a class="nav-link-style text-success" href="/editaddresslist/{{i.id}}" data-bs-toggle="tooltip" title="Edit"><i class="ci-edit"></i></a>
+            <span class="blog-entry-meta-divider mx-2"></span>
+            <a class="nav-link-style text-danger" href="/adduseraddressprimary/{{i.userid}}/2/{{i.id}}" data-bs-toggle="tooltip" title="Remove"><div class="ci-trash"></div></a>
+          </div>
+        </div>
+      </div>
+    </label>
+    {% endfor %}
+  </div>
+</form>
+<a class="btn btn-outline-accent shadow d-block w-100 m-1 card" href="/addresslist/2"><i class="fa-regular fa-circle-plus fs-base me-2"></i>Add Address</a>
+{% endblock contentaddpayre %}

@@ -1,0 +1,55 @@
+{% extends 'main/dashboard.html' %}
+{% block content3 %}
+<!-- <div class="tab-content"> -->
+  <div class="tab-pane fade show active">
+    {% for i in userdeatails.Requirements.paymentlists %}  <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><span>Credit / Debit card</span><img class="d-inline-block align-middle ms-2" src="{{img}}/paymentcard/cards.png" width="187" alt="Credit card"></button>
+          </h2>
+          <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="credit-card-wrapper"></div>
+              <form class="credit-card-form row g-3 form needs-validation" action="/editpaymentlist/{{i.id}}" method="POST" novalidate id="paymentcardform"  oninput="return carvalidateForm()">      
+                {% csrf_token %}
+                <div class="col-12">
+                  <div class="form-check">
+                    {% if i.userpaymentprimary %}
+                    <input class="form-check-input" type="checkbox" id="paymentprimary" name="paymentprimary" checked>
+                    {% else %}
+                    <input class="form-check-input" type="checkbox" id="paymentprimary" name="paymentprimary">
+                    {% endif %}
+                    <label class="form-check-label" for="paymentprimary">Make this payment primary</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">         
+                  <input type="text" class="form-control" name="cardnumber" id="cardnumber" placeholder="Card Number" value="{{i.usercardnumber}}" required>
+                  <div class="invalid-feedback">Please enter a Card Number.</div>
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" name="cardname" id="cardname" value="{{i.usercardname}}" placeholder="Full Name" required>
+                  <div class="invalid-feedback">Please enter a Card Name.</div>
+                </div>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" name="cardexpiry" id="cardexpiry" value="{{i.usercardmonth}}/{{i.usercardyear}}" placeholder="MM/YY" required>
+                  <div class="invalid-feedback">Please enter a Card Expiry.</div>
+                </div>
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" name="cardcvc" id="cardcvc" value="{{i.usercardcvc}}" placeholder="CVC" required>
+                  <div class="invalid-feedback">Please enter a Card cvc.</div>
+                </div>
+                <div class="col-sm-6">
+                  <button type="submit" class="btn btn-primary d-block w-100" id="editpaymentcardbutton">Submit</button>
+                </div>
+                <input type="hidden" name="cardexpirymonth" id="cardexpirymonth" value="">
+                <input type="hidden" name="cardexpiryyear" id="cardexpiryyear" value="">
+                <input type="hidden" name="paycardtype" id="paycardtype" value="">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+<!-- </div> -->
+{% endblock content3 %}

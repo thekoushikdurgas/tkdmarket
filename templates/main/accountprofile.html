@@ -1,0 +1,200 @@
+{% extends 'main/dashboard.html' %}
+{% block content3 %}
+<div class="tab-pane fade {{userdeatails.2ndnavlinkactive.profile1}}">
+    <div class="bg-secondary rounded-3 p-4 mb-4">
+        <form class="form" action="/profileavaterchange/{{userdeatails.id}}" method="POST" enctype="multipart/form-data" id="avaterchangeform">{% csrf_token %}<div class="d-flex align-items-center flex-wrap justify-content-center flex-column">                      <div class="mb-3 pb-2"><img class="img-thumbnail rounded" src="../../../tkdproduct/{{userdeatails.userpic}}" alt="{{userdeatails.username}}" width="100" height="100"></div><div class="mb-3 pb-2"><input class="form-control" type="file" id="profileavatar" name="profileavatar"  accept="image/*" aria-required="true"><div class="form-text">Upload JPG, GIF or PNG image. 300 x 300 required.</div></div><div class="ps-3"><button class="btn btn-success btn-shadow btn-sm mb-2" type="submit" id="avaterchangebuttton">Change avatar</button></div></div></form>
+    </div>
+    <form class="form" action="/profiledeatailschange/{{userdeatails.id}}" method="POST">{% csrf_token %}<div class="row gx-4 gy-3"><div class="col-sm-6"><label class="form-label" for="fullname">First Name</label><input class="form-control" type="text" id="fullname" name="fullname" value="{{userdeatails.username}}"></div><div class="col-sm-6"><label class="form-label" for="account-ln">Gender</label><br><div class="form-check form-check-inline">{% if userdeatails.usergender == "male" %}<input class="form-check-input" type="radio" id="male" name="gender" value="male" checked>{% else %}<input class="form-check-input" type="radio" id="male" name="gender" value="male">{% endif %}<label class="form-check-label" for="gender">Male</label></div><div class="form-check form-check-inline">{% if userdeatails.usergender == "female" %}<input class="form-check-input" type="radio" id="female" name="gender" value="female" checked>{% else %}<input class="form-check-input" type="radio" id="female" name="gender" value="female">{% endif %}<label class="form-check-label" for="gender">Female</label></div><div class="form-check form-check-inline">{% if userdeatails.usergender == "others" %}<input class="form-check-input" type="radio" id="others" name="gender" value="others" checked>{% else %}<input class="form-check-input" type="radio" id="others" name="gender" value="others">{% endif %}<label class="form-check-label" for="gender">Others</label></div></div><div class="col-sm-6"><label class="form-label" for="account-email">Email Address</label><input class="form-control" type="email" id="account-email" value="{{userdeatails.useremail}}" disabled></div><div class="col-sm-6"><label class="form-label" for="userphone">Phone Number</label><input class="form-control" type="text" id="userphone" name="userphone" value="{{userdeatails.userphone}}" maxlength="10" required></div><div class="col-sm-6"><label class="form-label" for="userdob">Date of Birth</label><input class="form-control" type="date" value="{{userdeatails.userdob}}" id="userdob" name="userdob" required></div><div class="col-12"><hr class="mt-2 mb-3"><div class="d-flex flex-wrap justify-content-between align-items-center"><div class="form-check"><input class="form-check-input" type="checkbox" id="subscribe_me" checked><label class="form-check-label" for="subscribe_me">Subscribe me to Newsletter</label></div><button class="btn btn-primary mt-3 mt-sm-0" type="submit">Update profile</button></div></div></div></form>
+    <div class="d-flex pt-4 mt-3 w-100">
+      <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/profile/2"><i class="fa-regular fa-bells fa-fw mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Change Password</span><span class="d-inline d-sm-none">Password</span></a></div>
+      <div class="w-50 ps-2"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/profile/3"><i class="fa-light fa-key fa-fw mt-sm-0 ms-1"></i><span class="d-none d-sm-inline">Notifications Change</span><span class="d-inline d-sm-none">Notifications</span></a></div>
+    </div>
+</div>
+<div class="tab-pane fade {{userdeatails.2ndnavlinkactive.profile2}}">
+  <div class="bg-secondary rounded-3 p-4">
+    <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="nf-disable-all" data-master-checkbox-for="#notifocation-settings"><label class="form-check-label fw-medium" for="nf-disable-all">Enable/disable all notifications</label></div></div><div id="notifocation-settings"><div class="border-bottom p-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="nf-product-sold" checked><label class="form-check-label" for="nf-product-sold">Product sold notifications</label></div><div class="form-text">Send an email when someone purchased one of my products</div></div><div class="border-bottom p-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="nf-product-updated" checked><label class="form-check-label" for="nf-product-updated">Product update notifications</label></div><div class="form-text">Send an email when a product I've purchased is updated</div></div><div class="border-bottom p-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="nf-product-comment" checked><label class="form-check-label" for="nf-product-comment">Product comment notifications</label></div><div class="form-text">Send an email when someone comments on one of my products</div></div><div class="border-bottom p-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="nf-product-review" checked><label class="form-check-label" for="nf-product-review">Product review notification</label></div><div class="form-text">Send an email when someone leaves a review with their rating</div></div><div class="border-bottom p-4"><div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="nf-daily-summary"><label class="form-check-label" for="nf-daily-summary">Daily summary emails</label></div><div class="form-text">Send me a daily summary of all products sold, commented or reviewed</div></div></div><div class="col-12 mt-2 mb-3"><div class="d-flex flex-wrap justify-content-between align-items-center"><button class="btn btn-primary mt-3 mt-sm-0 mt-4 d-block w-100" type="submit">Save changes</button></div>
+  </div>
+  <div class="d-flex pt-4 mt-3 w-100">
+    <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/profile/1"><i class="fa-regular fa-user-pen fa-fw mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Profile Change</span><span class="d-inline d-sm-none">Profile</span></a></div>
+    <div class="w-50 ps-2"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/profile/2"><i class="fa-regular fa-bells fa-fw mt-sm-0 ms-1"></i><span class="d-none d-sm-inline">Change Password</span><span class="d-inline d-sm-none">Password</span></a></div>
+  </div>
+</div>
+<div class="tab-pane fade {{userdeatails.2ndnavlinkactive.profile3}}">
+  <form class="form needs-validation" action="/profilepasswordchange/{{userdeatails.id}}" method="POST" novalidate id="passwordchangeform">{% csrf_token %}<div class="col-sm-6"><label class="form-label" for="oldpassword">Old Password</label><div class="password-toggle"><input class="form-control" type="password" id="oldpassword" name="oldpassword" required><label class="password-toggle-btn" aria-label="Show/hide password"><input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span></label></div></div><div class="col-sm-6"><label class="form-label" for="newpassword">New Password</label><div class="password-toggle"><input class="form-control" type="password" id="newpassword" name="newpassword" required><label class="password-toggle-btn" aria-label="Show/hide password"><input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span></label></div></div><div class="col-sm-6"><label class="form-label" for="cnewpassword">Confirm Password</label><div class="password-toggle"><input class="form-control" type="password" id="cnewpassword" name="cnewpassword" required><label class="password-toggle-btn" aria-label="Show/hide password"><input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span></label></div></div><div class="text-sm-end mt-4"><button class="btn btn-primary d-block w-100" type="submit" id="passwordchangebutton">Save changes</button></div></form>
+  <div class="d-flex pt-4 mt-3 w-100">
+    <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/profile/1"><i class="fa-regular fa-user-pen fa-fw mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Profile Change</span><span class="d-inline d-sm-none">Profile</span></a></div>
+    <div class="w-50 ps-2"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/profile/2"><i class="fa-regular fa-bells fa-fw mt-sm-0 ms-1"></i><span class="d-none d-sm-inline">Change Password</span><span class="d-inline d-sm-none">Password</span></a></div>
+  </div>
+</div>
+<div class="tab-pane fade {{userdeatails.2ndnavlinkactive.addresslist1}}">
+  <div class="d-flex flex-wrap tkdradios">
+    {% for i in userdeatails.Requirements.addresslists %}
+    <div class="tkdradio">
+      <div class="card m-1 shadow"><div class="card-body"><h2 class="h6 blog-entry-title">{{i.username}}</h2><p class="fs-sm">{{i.useraddress}}</p><p class="fs-sm">{{i.usercity}}, {{i.userzipcode}}</p><p class="fs-sm">{{i.userstate}}, {{i.usercountry}}</p></div><div class="card-footer d-flex align-items-center">{% if i.useraddressprimary %}<a class="badge rounded-pill bg-success">Default</a>{% else %}<a href="/adduseraddressprimary/{{i.userid}}/1/{{i.id}}" class="alert-link fs-xs">Set as Default</a>{% endif %}<div class="ms-auto text-nowrap"><a class="nav-link-style text-success" href="/editaddresslist/{{i.id}}" data-bs-toggle="tooltip" title="Edit"><i class="ci-edit"></i></a><span class="blog-entry-meta-divider mx-2"></span><a class="nav-link-style text-danger" href="/adduseraddressprimary/{{i.userid}}/2/{{i.id}}" data-bs-toggle="tooltip" title="Remove"><div class="ci-trash"></div></a></div></div></div>
+    </div>
+    {% endfor %}
+  </div>
+  <a class="btn btn-outline-accent shadow d-block w-100 m-1 card" href="/addresslist/2"><i class="fa-regular fa-circle-plus fa-fw fs-base me-2"></i>Add Address</a>
+</div>
+<div class="tab-pane fade {{userdeatails.2ndnavlinkactive.addresslist2}}">
+  <form class="form needs-validation" action="/addaddresslist/{{userdeatails.id}}" method="POST" novalidate id="addaddressform">{% csrf_token %}<div class="row gx-4 gy-3"><div class="col-sm-12"><label class="form-label" for="address-fn">Full name (First and Last name)</label><input class="form-control" type="text" id="address-fn" name="address-fn" required><div class="invalid-feedback">Please enter a name.</div></div><div class="col-sm-6"><label class="form-label" for="address-country">Country/Region</label><select class="form-select" id="address-country" name="address-country" required><option value="">Select country</option>{% for i in userdeatails.Requirements.countrylist %}<option value="{{i.countryname}}">{{i.countryname}}</option>{% endfor %}</select><div class="invalid-feedback">Please select your country!</div></div><div class="col-sm-6"><label class="form-label" for="address-state">State/Province/Region</label><select class="form-select" id="address-state" name="address-state" required><option value="">Select a Country/Region</option></select><div class="invalid-feedback">Please select your state!</div></div><div class="col-sm-12"><label class="form-label" for="address-line">Line 1</label><input class="form-control" type="text" id="address-line" name="address-line" required><div class="invalid-feedback">Please enter an address.</div></div><div class="col-sm-6"><label class="form-label" for="address-city">City</label><input class="form-control" type="text" id="address-city" name="address-city" required><div class="invalid-feedback">Please enter a city name.</div></div><div class="col-sm-6"><label class="form-label" for="address-zip">ZIP code</label><input class="form-control" type="text" id="address-zip" name="address-zip" required><div class="invalid-feedback">lease enter a ZIP or postal code.</div></div><div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="address-primary" name="address-primary"><label class="form-check-label" for="address-primary">Make this address primary</label></div></div></div><div class="col-12 mt-2 mb-3"><div class="d-flex flex-wrap justify-content-between align-items-center"><button class="btn btn-primary mt-3 mt-sm-0 mt-4 d-block w-100" type="submit" id="addaddressbutton">Add address</button></div></div></form>
+</div>
+<div class="tab-pane fade{{userdeatails.2ndnavlinkactive.paymentlist1}}">
+  <div class="d-flex flex-wrap tkdradios">
+    {% for i in userdeatails.Requirements.paymentlist %}
+    <div class="tkdradio">
+      <div class="card m-1 shadow"><div class="card-body"><div class="d-flex align-items-center"><div class="flex-shrink-0"><img src="{{img}}/paymentcard/{{i.usercardtype}}.png" width="64" alt="{{i.usercardtype}}"></div><div class="ps-2"><h6 class="widget-product-title">{{i.usercardname}}</h6><div class="widget-product-meta"><p class="text-accent m-0">{{i.usercardnumber_format}}</p></div></div></div><p class="fs-sm m-0 d-flex justify-content-between"><span>{{i.usercardcvc_format}}</span><span>{{i.usercardmonth}}/{{i.usercardyear}}</span></p></div><div class="card-footer d-flex align-items-center">{% if i.userpaymentprimary %} <a class="badge rounded-pill bg-success">Default</a>{% else %} <a href="/adduserpaymentprimary/{{i.userid}}/1/{{i.id}}" class="alert-link fs-xs">Set as Default</a>{% endif %} <div class="ms-auto text-nowrap"><a class="nav-link-style text-success" href="/editpaymentlist/{{i.id}}" data-bs-toggle="tooltip" title="Edit"><i class="ci-edit"></i></a><span class="blog-entry-meta-divider mx-2"></span><a class="nav-link-style text-danger" href="/adduserpaymentprimary/{{i.userid}}/2/{{i.id}}" data-bs-toggle="tooltip" title="Remove"><div class="ci-trash"></div></a></div></div></div>
+    </div>
+    {% endfor %}
+  </div>
+  <a class="btn btn-outline-accent shadow d-block w-100 m-1 card" href="/paymentlist/2"><i class="fa-regular fa-circle-plus fa-fw fs-base me-2"></i>Add Payment Method</a>
+</div>
+<div class="tab-pane fade{{userdeatails.2ndnavlinkactive.paymentlist2}}">
+  <div class="accordion" id="accordionExample"><div class="accordion-item"><h2 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><span>Credit / Debit card</span><img class="d-inline-block align-middle ms-2" src="{{img}}/paymentcard/cards.png" width="187" alt="Credit card"></button></h2><div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample"><div class="accordion-body"><div class="credit-card-wrapper"></div><form class="credit-card-form row g-3 form needs-validation" action="/addpaymentlist/{{userdeatails.id}}" method="POST" novalidate id="paymentcardform">{% csrf_token %} <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="paymentprimary" name="paymentprimary"><label class="form-check-label" for="paymentprimary">Make this payment primary</label></div></div><div class="col-sm-6"><input type="text" class="form-control" name="cardnumber" id="cardnumber" placeholder="Card Number" required><div class="invalid-feedback">Please enter a Card Number.</div></div><div class="col-sm-6"><input type="text" class="form-control" name="cardname" id="cardname" placeholder="Full Name" required><div class="invalid-feedback">Please enter a Card Name.</div></div><div class="col-sm-3"><input type="text" class="form-control" name="cardexpiry" id="cardexpiry" placeholder="MM/YY" required><div class="invalid-feedback">Please enter a Card Expiry.</div></div><div class="col-sm-3"><input type="text" class="form-control" name="cardcvc" id="cardcvc" placeholder="CVC" required><div class="invalid-feedback">Please enter a Card cvc.</div></div><div class="col-sm-6"><button type="submit" class="btn btn-primary d-block w-100" id="paymentcardbutton">Submit</button></div><input type="hidden" name="cardexpirymonth" id="cardexpirymonth" value=""><input type="hidden" name="cardexpiryyear" id="cardexpiryyear" value=""><input type="hidden" name="paycardtype" id="paycardtype" value=""></form></div></div></div><div class="accordion-item"><h2 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><span>PayPal</span><img class="d-inline-block align-middle ms-2" src="{{img}}/paymentcard/paypal.png" width="39" alt="PayPal"></button></h2><div class="accordion-collapse collapse" id="collapseTwo" aria-labelledby="headingTwo" data-bs-parent="#accordionExample"><div class="accordion-body">This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element.</div></div></div><div class="accordion-item"><h2 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><span>UPI</span><img class="d-inline-block align-middle ms-2" src="{{img}}/paymentcard/bhim.png" width="39" alt="bhim"><img class="d-inline-block align-middle ms-2" src="{{img}}/paymentcard/upi.png" width="39" alt="upi"></button></h2><div class="accordion-collapse collapse" id="collapseThree" aria-labelledby="headingThree" data-bs-parent="#accordionExample"><div class="accordion-body">This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element.</div></div></div></div>
+</div>
+<div class="tab-pane fade{{userdeatails.2ndnavlinkactive.orderlist}}">
+    <div class="d-flex justify-content-between align-items-center mb-lg-3">
+        <div class="d-flex align-items-center">
+          <label class="d-none d-lg-block fs-sm text-nowrap opacity-75 me-2" for="order-sort">Sort orders:</label>
+          <label class="d-lg-none fs-sm text-nowrap opacity-75 me-2" for="order-sort">Sort orders:</label>
+          <select class="form-select" id="order-sort">
+            {% for key, value in userdeatails.Requirements.productstatuslist.items %}
+              {% if userdeatails.Requirements.orderlisttype == key %}
+              <option value="{{key}}" selected>{{value}}</option>
+              {% else %}
+              <option value="{{key}}">{{value}}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="d-flex align-items-center">
+          <label class="d-none d-lg-block fs-sm text-nowrap opacity-75 me-2" for="order-sort">Sort orders:</label>
+          <label class="d-lg-none fs-sm text-nowrap opacity-75 me-2" for="order-sort">Sort By:</label>
+          <select class="form-select" id="order-by">
+            <option value="1" {{userdeatails.Requirements.orderby1}}>Ascending Order</option>
+            <option value="2" {{userdeatails.Requirements.orderby2}}>Descending Order</option>
+          </select>
+        </div>
+    </div>
+    {% for i in userdeatails.Requirements.orderlist %}
+    <div class="card my-2 shadow w-100">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        <div>
+          <span>ORDER #</span>
+          <a class="alert-link fs-xs cursor-pointer" href="/order/{{i.orderid}}">{{i.orderid}}</a>
+        </div>
+        <span class="badge tkdorder-{{i.productstatuscolor}} m-0">{{i.productstatus}}</span>
+      </div>
+      <div class="card-body">
+        <div class="d-flex flex-column align-items-center align-items-md-center flex-md-row justify-content-md-around">
+          <div class="flex-shrink-0"><a href="/productdetails/{{i.productdetails.id}}"><img src="/tkdproduct/{{i.productdetails.image}}" width="200" alt="{{i.productdetails.name}}"></a></div>
+          <div class="ps-2 d-flex flex-column align-items-center">
+            <a class="widget-product-title h6" href="/productdetails/{{i.productdetails.id}}">{{i.productdetails.name}}</a>
+            <div class="widget-product-meta text-accent d-flex">
+              <span>₹{{i.productdetails.price_save}} <span class="text-muted"><i class="fa-light fa-xmark fa-fw"></i> {{i.Productquantity}}</span></span>
+              <span><i class="fa-regular fa-equals fa-fw"></i></span>
+              <span><span><strong>₹{{i.total_price}}</strong></span></span>
+            </div>
+            <div class="fs-sm">
+              <span>SHIP TO :-</span>
+              <a class="alert-link fs-xs cursor-pointer" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover" title="{{i.addressdetails.username}}" data-bs-content="{{i.addressdetails.useraddress}}, {{i.addressdetails.usercity}}, {{i.addressdetails.userzipcode}}, {{i.addressdetails.userstate}}, {{i.addressdetails.usercountry}}">{{i.addressdetails.username}}</a>
+            </div>
+            <div class="fs-sm">
+              <span>ORDER PLACED :-</span>
+              <span class="fs-xs">{{i.created_at}}</span>
+            </div>
+            {% if i.productstatus == 'Pending' %}
+            <a class="btn btn-danger d-block w-100 py-2 px-1 m-1" href="/ordercancel/{{i.id}}"><span class="">Cancel items</span></a>
+            {% elif i.productstatus == 'Cancel' %}
+            <a class="btn btn-danger d-block w-100 py-2 px-1 m-1" href="/productdetails/{{i.productdetails.id}}"><span class="">Buy it again</span></a>
+            {% elif i.productstatus == 'Delivered' %}
+            <a class="btn btn-warning d-block w-100 py-2 px-1 m-1" href="/ordertracker/{{i.trackingid}}"><span class="">Track package</span></a>
+            <a class="btn btn-warning d-block w-100 py-2 px-1 m-1" href="/returnitems/{{i.trackingid}}"><span class="">Return/Replace Request</span></a>
+            {% elif i.productstatus == 'Returned Request' %}
+            <a class="btn btn-warning d-block w-100 py-2 px-1 m-1" href="/ordertracker/{{i.trackingid}}"><span class="">Return/Replace track</span></a>
+            <a class="btn btn-danger d-block w-100 py-2 px-1 m-1" href="/ordercancel/{{i.id}}"><span class="">Cancel items</span></a>
+            {% elif i.productstatus == 'Returned' %}
+            <a class="btn btn-warning d-block w-100 py-2 px-1 m-1" href="/ordertracker/{{i.trackingid}}"><span class="">Return/Replace track</span></a>
+            <a class="btn btn-danger d-block w-100 py-2 px-1 m-1" href="/ordercancel/{{i.id}}"><span class="">Cancel items</span></a>
+            {% elif i.productstatus == 'Refunded' %}
+            <a class="btn btn-warning d-block w-100 py-2 px-1 m-1" href="/ordertracker/{{i.trackingid}}"><span class="">Return/Replace track</span></a>
+            <a class="btn btn-danger d-block w-100 py-2 px-1 m-1" href="/ordercancel/{{i.id}}"><span class="">Cancel items</span></a>
+            {% else %}
+            <a class="btn btn-warning d-block w-100 py-2 px-1 m-1" href="/ordertracker/{{i.trackingid}}"><span class="">Track package</span></a>
+            <a class="btn btn-danger d-block w-100 py-2 px-1 m-1" href="/ordercancel/{{i.id}}"><span class="">Cancel items</span></a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% if userdeatails.Requirements.orderlistnext != 0 %}
+      <nav class="d-md-flex justify-content-between align-items-center text-center text-md-start m-1" aria-label="Page navigation">
+        <div class="d-md-flex align-items-center w-100"><span class="fs-sm text-muted me-md-3">Showing {{userdeatails.Requirements.orderlistno}} of {{userdeatails.Requirements.totalorderlistno}} records</span>
+          <div class="progress w-100 my-3 mx-auto mx-md-0" style="max-width: 10rem; height: 4px;">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{userdeatails.Requirements.orderlistprogressno}}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        <a class="btn btn-outline-primary btn-sm shadow d-block card py-2 px-1 w-100 w-md-25" href="/orderlist/{{userdeatails.Requirements.orderlisttype}}/{{userdeatails.Requirements.orderlistnexttype}}/{{userdeatails.Requirements.orderlistnext}}"><i class="ci-loading fs-base me-2"></i>More orders</a>
+      </nav>
+    {% endif %}
+</div>
+<div class="tab-pane fade{{userdeatails.2ndnavlinkactive.wishlistlist}}">
+    {% for i in userdeatails.Requirements.usershopwishlist %}
+    <div class="card my-2 shadow w-100">
+      <div class="card-body row">
+        <div class="col-sm-3 text-center align-self-center">
+          <a href="/productdetails/{{i.productdetails.id}}">
+            <img src="/tkdproduct/{{i.productdetails.image}}" alt="{{i.productdetails.name}}" srcset="" class="img-fluid" height="150" width="150">
+          </a>
+        </div>
+        <div class="col-sm-9">
+         <div>
+          <div class="my-3">
+           <form class="form needs-validation lenghtform" action="/addwishlist/{{i.id}}/1" method="POST" novalidate>
+             {% csrf_token %}
+             <div class="input-group">
+              <a class="btn btn-outline-danger btn-sm d-flex justify-content-between align-items-center" type="button" inputno="{{i.productnos}}" onclick="decrementincrement(this,false)"><i class="fa-solid fa-minus fa-fw"></i></a>
+              <input class="form-control lenghtvalue" type="number" id="quantity{{i.id}}" name="quantity{{i.id}}" min="1" value="{{i.Productquantity}}" readonly="">
+              <a class="btn btn-outline-success btn-sm d-flex justify-content-between align-items-center" type="button" inputno="{{i.productnos}}" onclick="decrementincrement(this,true)"><i class="fa-solid fa-plus fa-fw"></i></a>
+            </div>
+           </form>
+          </div>
+          <div class="widget-product-meta text-accent d-flex flex-column align-items-center align-items-md-center flex-md-row justify-content-md-around">
+            <div class="h5 product-title fs-base d-flex justify-content-center align-items-center m-0"><a href="/productdetails/{{i.productdetails.id}}">{{i.productdetails.name}}</a></div>
+            <span>₹{{i.productdetails.price_save}} <span class="text-muted"><i class="fa-light fa-xmark fa-fw"></i> <span class="wishProductquantity">{{i.Productquantity}}</span></span></span>
+            <span class="d-none d-md-block"><i class="fa-regular fa-equals fa-fw"></i></span>
+            <span><span><strong class="totalpricestrong">₹{{i.total_price}}</strong></span></span>
+          </div>
+         </div>
+        </div>
+        <div class="d-flex w-100">
+          <div class="w-50 pe-3"><a class="btn btn-danger d-block w-100 py-2 px-1" href="/addwishlist/{{i.id}}/0"><i class="ci-close-circle mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Remove item</span><span class="d-inline d-sm-none">Remove</span></a></div>
+          <div class="w-50 ps-2"><a class="btn btn-success d-block w-100 py-2 px-1" href="/addwishlist/{{i.id}}/2"><i class="fa-light fa-cart-circle-arrow-up fa-fw me-1"></i><span class="d-none d-sm-inline">Move to cart</span><span class="d-inline d-sm-none">Cart</span></a></div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% if userdeatails.Requirements.shopwishlistnext != 0 %}
+      <nav class="d-md-flex justify-content-between align-items-center text-center text-md-start m-1" aria-label="Page navigation">
+        <div class="d-md-flex align-items-center w-100"><span class="fs-sm text-muted me-md-3">Showing {{userdeatails.Requirements.wishlistno}} of {{userdeatails.Requirements.totalwishlistno}} records</span>
+          <div class="progress w-100 my-3 mx-auto mx-md-0" style="max-width: 10rem; height: 4px;">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{userdeatails.Requirements.wishlistprogressno}}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        <a class="btn btn-outline-primary btn-sm shadow d-block card py-2 px-1 w-100 w-md-25" href="/wishlistlist/{{userdeatails.Requirements.shopwishlistnext}}"><i class="ci-loading fs-base me-2"></i>More orders</a>
+      </nav>
+    {% endif %}
+</div>
+{% endblock content3 %}
+{% block js %}
+<script src="{{vendor}}/jquerypayment/jquery.payment.js"></script>
+<script src="{{vendor}}/card/dist/card.js"></script>
+<script src="{{js}}/profile.js"></script>
+<script>
+  $(".progress-bar").each(function (index) {
+      var progress = $(this).attr('aria-valuenow');
+      $(this).css('width', progress+'%');
+  });
+</script>
+{% endblock js %}

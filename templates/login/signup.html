@@ -1,0 +1,201 @@
+{% extends 'login/login.html' %}
+{% load static %}
+{% static "img" as img %}
+{% block content2 %}
+<div class="d-flex flex-column flex-root">
+	<div class="login login-4 wizard d-flex flex-column flex-lg-row flex-column-fluid wizard">
+		<div class="login-container d-flex flex-center flex-row flex-row-fluid order-2 order-lg-1 flex-row-fluid bg-white py-lg-0 pb-lg-0 pt-15 pb-12">
+			<div class="login-content login-content-signup d-flex flex-column-auto flex-column px-10">
+				<a href="{% url 'home' %}" class="login-logo"><img src="{{img}}/title.png" class="max-h-70px" alt=""></a>
+				<div class="login-form">
+					<form class="form" id="kt_login_singin_form" action="customerregistration" method="POST" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="font-weight-bolder text-dark font-size-h2 font-size-h1-l font-weight-bold text-center">TKD Market</div>
+						<div class="text-muted font-weight-bold font-size-h4 pb-1 text-center pb-3">Create Account or Already Account ? <a href="{% url 'tkdlogin' %}" class="text-primary font-weight-bolder">Sign In</a></div>
+						<div class="form-group">
+							<input class="form-control form-control-solid rounded-lg border-0 py-6 px-6 font-size-h6 " type="text" name="fullname" id="fullname" placeholder="Fullname" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<input class="form-control form-control-solid rounded-lg border-0 py-6 px-6 font-size-h6 " type="text" name="email" id="email" placeholder="Email Address" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control form-control-solid py-7 px-6 rounded-lg border-0" id="dateofbirth" name="dateofbirth" readonly="readonly" placeholder="Date of Birth(DD/MM/YYYY)" />
+						</div> 
+						<div class="form-group">
+							<div class="custom-file">
+							 <input type="file" class="custom-file-input" id="profileavatar" name="profileavatar"  accept="image/*" aria-required="true">
+							 <label class="custom-file-label rounded-lg text-muted font-weight-bold font-size-h6 pb-1 pb-3" for="profileavatar">Select your picture(single file accepted and max-size 1MB)</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="radio-inline">
+								<label class="radio radio-outline radio-outline-2x radio-primary">
+									<input type="radio" name="gender" id="male" value="male">
+									<span></span>
+									Male
+								</label>
+								<label class="radio radio-outline radio-outline-2x radio-primary">
+									<input type="radio" name="gender" id="female" value="female">
+									<span></span>
+									Female
+								</label>
+								<label class="radio radio-outline radio-outline-2x radio-primary">
+									<input type="radio" name="gender" id="others" value="others">
+									<span></span>
+									Others
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<input class="form-control form-control-solid py-7 px-6 rounded-lg border-0" type="password" name="password" id="password" placeholder="Password" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<input class="form-control form-control-solid py-7 px-6 rounded-lg border-0" type="password" name="cpassword" id="cpassword" placeholder="Confirm Password" autocomplete="off">
+						</div>            
+						<div class="form-group">
+							<!-- <label class="col-form-label text-right col-lg-3 col-sm-12">Telephone</label> -->
+							<!-- <div class="col-lg-6 col-md-9 col-sm-12"> -->
+							<input type="text" class="form-control phone form-control-solid py-7 px-6 rounded-lg border-0" id="userphone" name="userphone" autocomplete="off">
+								<!-- <span class="form-text text-muted">Telephone mask: <code>9999-9999</code></span> -->
+							<!-- </div> -->
+						</div>
+						<div class="form-group">
+							<label class="checkbox mb-0">
+								<input type="checkbox" name="agree" />
+								<span></span>
+								<div class="ml-2 text-muted font-weight-bold font-size-h4">I Agree the <a href="#">terms and conditions</a>.</div>
+							</label>
+						</div>
+						<div class="pb-lg-0 pb-5"style="display: flex;flex-direction: column;align-items: center;">
+							<button type="submit" id="kt_login_singin_form_submit_button" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content2 %}
+{% block js %}
+<script>
+	var KTBootstrapDatepicker = function () {
+		var arrows = {
+            leftArrow: '<i class="la la-angle-left"></i>',
+            rightArrow: '<i class="la la-angle-right"></i>'
+        },demos = function () {
+			$('#dateofbirth').datepicker({
+				rtl: KTUtil.isRTL(),
+				todayHighlight: true,
+				orientation: "bottom left",
+				templates: arrows
+			});
+			$('#userphone').mask('000-000-0000', {
+				placeholder: "Telephone(999-999-9999)"
+			});
+		}
+		return {
+			init: function() {
+				demos(); 
+			}
+		};
+	}();
+	var KTLogin = function() {
+		var _buttonSpinnerClasses = 'spinner spinner-right spinner-white pr-15';
+		var _handleFormSignin = function() {
+			var form = KTUtil.getById('kt_login_singin_form');
+			var formSubmitButton = KTUtil.getById('kt_login_singin_form_submit_button');
+			if (!form) {return;}
+			FormValidation.formValidation(form,{
+						fields: {
+							fullname: {validators: {notEmpty: {message: 'Username is required'}}},
+							email: {
+								validators: {
+									notEmpty: {message: 'Email address is required'},
+									emailAddress: {message: 'The value is not a valid email address'}
+								}
+							},
+							password: {validators: {notEmpty: {message: 'The password is required'}}},
+							cpassword: {
+								validators: {
+									notEmpty: {message: 'The password confirmation is required'},
+									identical: {
+										compare: function() {return form.querySelector('[name="password"]').value;},
+										message: 'The password and its confirm are not the same'
+									}
+								}
+							},
+							userphone: {
+								validators: {
+									notEmpty: {
+										message: 'Telephone is required',
+									},
+									stringLength: {
+										message: 'The name must be 10 characters long',
+										min: 12,                        
+									},
+								},
+							},
+							profileavatar: {validators: {notEmpty: {message: 'Upload a profile picture'}}},
+							dateofbirth: {validators: {notEmpty: {message: 'Select a date of birth'}}},
+							gender: {validators: {notEmpty: {message: 'Select a gender'}}},
+							agree: {validators: {notEmpty: {message: 'You must accept the terms and conditions'}}},
+						},
+						plugins: {
+							trigger: new FormValidation.plugins.Trigger(),
+							submitButton: new FormValidation.plugins.SubmitButton(),
+							bootstrap: new FormValidation.plugins.Bootstrap({eleInvalidClass: '',eleValidClass: '',})
+						}
+					}
+				).on('core.form.valid', function() {
+					KTUtil.btnWait(formSubmitButton, _buttonSpinnerClasses, "Please wait");
+					setTimeout(function() {KTUtil.btnRelease(formSubmitButton);}, 2000);
+					var frm = $('#kt_login_singin_form');
+					var formData = new FormData(frm[0]);
+					$.ajax({
+						url: "",    
+						type: 'POST',
+						data: formData,
+						async: false,
+						cache: false,
+						contentType: false,
+						enctype: 'multipart/form-data',
+						processData: false,
+						success: function (tdata) {
+							if(tdata == "Email is already registered"){
+								Swal.fire({
+									text: "Sorry, "+tdata,
+									icon: "error",
+									buttonsStyling: false,
+									confirmButtonText: "Ok, got it!",
+									customClass: {
+										confirmButton: "btn font-weight-bold btn-light-primary"
+									}
+								})
+							}else if(tdata == "Telephone is already registered"){
+								Swal.fire({
+									text: "Sorry, "+tdata,
+									icon: "error",
+									buttonsStyling: false,
+									confirmButtonText: "Ok, got it!",
+									customClass: {
+										confirmButton: "btn font-weight-bold btn-light-primary"
+									}
+								})
+							}else{ 
+								sleep(1000).then((() => {
+									location.href = "/tkdlogin";
+								}));
+							}
+						}
+					});
+					return false;
+				});
+			}
+		return {init: function() {_handleFormSignin();}};
+	}();
+	jQuery(document).ready(function() {
+		KTBootstrapDatepicker.init();
+		KTLogin.init();   
+	});
+</script>
+{% endblock js %}

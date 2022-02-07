@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% static "img" as img %}
+{% static "css" as css %}
+{% static "js" as js %}
+{% static "vendor" as vendor %}
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="TheKoushikDurgas" />
+  <meta name="description" content="TKD Market - E-Commerce Site" />
+  <meta name="keywords" content="bootstrap, business, creative agency, construction, services, e-commerce, shopping cart, mobile app showcase, multipurpose, shop, ui kit, marketing, seo, landing, html5, css3, javascript, gallery, slider, touch, creative" />
+  <meta name="theme-color" content="#fe6100">
+  <meta name="msapplication-TileColor" content="#2c0101">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <title>{{userdeatails.usertype}} | TKD Market | E-Commerce Site</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="{{img}}/title.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{img}}/title.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{img}}/title.png">
+  <link rel="mask-icon" color="#5bbad5" href="{{img}}/title.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{img}}/title.png">
+  <link rel="stylesheet" media="screen" href="{{css}}/index.css">
+  <link rel="stylesheet" media="screen" href="{{vendor}}/simplebar/dist/simplebar.min.css" />
+  <link rel="stylesheet" media="screen" href="{{vendor}}/tiny-slider/dist/tiny-slider.css" />
+  <link rel="stylesheet" media="screen" href="{{vendor}}/drift-zoom/dist/drift-basic.min.css" />
+  <link rel="stylesheet" media="screen" href="{{vendor}}/prismjs/themes/prism.css"/>
+  <link rel="stylesheet" media="screen" href="{{vendor}}/prismjs/plugins/toolbar/prism-toolbar.css"/>
+  <link rel="stylesheet" media="screen" href="{{vendor}}/prismjs/plugins/line-numbers/prism-line-numbers.css"/>
+  {% block css %}{% endblock css %}
+  <link rel="stylesheet" media="screen" href="{{css}}/theme.min.css">
+</head>
+<body class="handheld-toolbar-enabled">
+  <main class="page-wrapper">
+    <header class="navbar navbar-light shadow-sm" style="padding: 0">
+      <div class="container">
+        <div class="offcanvas offcanvas-start me-auto order-lg-2" id="navbarOffcanvas">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Main Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-regular fa-xmark fa-fw"></i></button>
+          </div>
+          <div class="offcanvas-body">
+            <!-- <div class="input-group d-lg-none my-3"><i class="ci-search position-absolute top-50 start-0 translate-middle-y text-muted fs-base ms-3"></i><input class="form-control" type="text" placeholder="Search for products"></div> -->
+            <ul class="navbar-nav navbar-mega-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="ci-view-grid me-2"></i>Departments</a>
+                <div class="dropdown-menu px-2 pb-4">
+                    <div class="mega-dropdown-column pt-3 pt-sm-4 px-2 px-lg-3">
+                      <div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{{img}}/shop/departments/01.jpg" alt="Clothing"></a>
+                        <h6 class="fs-base mb-2">Clothing</h6>
+                        <ul class="widget-list">
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Women's clothing</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Men's clothing</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Kid's clothing</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mega-dropdown-column pt-4 px-2 px-lg-3">
+                      <div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{{img}}/shop/departments/02.jpg" alt="Shoes"></a>
+                        <h6 class="fs-base mb-2">Shoes</h6>
+                        <ul class="widget-list">
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Women's shoes</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Men's shoes</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Kid's shoes</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mega-dropdown-column pt-4 px-2 px-lg-3">
+                      <div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{{img}}/shop/departments/03.jpg" alt="Gadgets"></a>
+                        <h6 class="fs-base mb-2">Gadgets</h6>
+                        <ul class="widget-list">
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Smartphones &amp; Tablets</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Wearable gadgets</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">E-book readers</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mega-dropdown-column pt-4 px-2 px-lg-3">
+                      <div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{{img}}/shop/departments/04.jpg" alt="Furniture"></a>
+                        <h6 class="fs-base mb-2">Furniture &amp; Decor</h6>
+                        <ul class="widget-list">
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Home furniture</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Office furniture</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Lighting and decoration</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mega-dropdown-column pt-4 px-2 px-lg-3">
+                      <div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{{img}}/shop/departments/05.jpg" alt="Accessories"></a>
+                        <h6 class="fs-base mb-2">Accessories</h6>
+                        <ul class="widget-list">
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Hats</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Sunglasses</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Bags</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mega-dropdown-column pt-4 px-2 px-lg-3">
+                      <div class="widget widget-links"><a class="d-block overflow-hidden rounded-3 mb-3" href="#"><img src="{{img}}/shop/departments/06.jpg" alt="Entertainment"></a>
+                        <h6 class="fs-base mb-2">Entertainment</h6>
+                        <ul class="widget-list">
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Kid's toys</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Video games</a></li>
+                          <li class="widget-list-item mb-1"><a class="widget-list-link" href="#">Outdoor / Camping</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>
+              </li>
+            </ul>
+            <ul class="navbar-nav">
+              {% for key, values in userdeatails.navlink.items %}
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">{{key}}</a>
+                <ul class="dropdown-menu">
+                {% for j in values %}
+                  <li class="dropdown-divider"></li>
+                  <li>
+                    <a class="dropdown-item" href="{{j.link}}">
+                      <div class="d-flex">
+                        <div class="lead text-muted pt-1"><i class="{{j.icon}}"></i></div>
+                        <div class="ms-2"><span class="d-block text-heading">{{j.name}}</span></div>
+                      </div>
+                    </a>
+                  </li>
+                {% endfor %}
+                </ul>
+              </li>
+              {% endfor %}
+              <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Home</a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown position-static mb-0"><a class="dropdown-item py-2 border-bottom" href="home-fashion-store-v1.html"><span class="d-block text-heading">Fashion Store v.1</span><small class="d-block text-muted">Classic shop layout</small></a>
+                    <div class="dropdown-menu h-100 animation-none mt-0 p-3"><a class="d-block" href="home-fashion-store-v1.html" style="width: 250px;"><img src="{{img}}/home/preview/th01.jpg" alt="Fashion Store v.1"></a></div>
+                  </li>
+                  <li class="dropdown position-static mb-0"><a class="dropdown-item py-2 border-bottom" href="home-electronics-store.html"><span class="d-block text-heading">Electronics Store</span><small class="d-block text-muted">Slider + Promo banners</small></a>
+                    <div class="dropdown-menu h-100 animation-none mt-0 p-3"><a class="d-block" href="home-electronics-store.html" style="width: 250px;"><img src="{{img}}/home/preview/th03.jpg" alt="Electronics Store"></a></div>
+                  </li>
+                  <li class="dropdown position-static mb-0"><a class="dropdown-item py-2 border-bottom" href="home-marketplace.html"><span class="d-block text-heading">Marketplace</span><small class="d-block text-muted">Multi-vendor, digital goods</small></a>
+                    <div class="dropdown-menu h-100 animation-none mt-0 p-3"><a class="d-block" href="home-marketplace.html" style="width: 250px;"><img src="{{img}}/home/preview/th04.jpg" alt="Marketplace"></a></div>
+                  </li>
+                  <li class="dropdown position-static mb-0"><a class="dropdown-item py-2 border-bottom" href="home-grocery-store.html"><span class="d-block text-heading">Grocery Store</span><small class="d-block text-muted">Full width + Side menu</small></a>
+                    <div class="dropdown-menu h-100 animation-none mt-0 p-3"><a class="d-block" href="home-grocery-store.html" style="width: 250px;"><img src="{{img}}/home/preview/th06.jpg" alt="Grocery Store"></a></div>
+                  </li>
+                  <li class="dropdown position-static mb-0"><a class="dropdown-item py-2 border-bottom" href="home-food-delivery.html"><span class="d-block text-heading">Food Delivery Service</span><small class="d-block text-muted">Food &amp; Beverages delivery</small></a>
+                    <div class="dropdown-menu h-100 animation-none mt-0 p-3"><a class="d-block" href="home-food-delivery.html" style="width: 250px;"><img src="{{img}}/home/preview/th07.jpg" alt="Food Delivery Service"></a></div>
+                  </li>
+                  <li class="dropdown position-static mb-0"><a class="dropdown-item py-2 border-bottom" href="home-fashion-store-v2.html"><span class="d-block text-heading">Fashion Store v.2</span><small class="d-block text-muted">Slider + Featured categories</small></a>
+                    <div class="dropdown-menu h-100 animation-none mt-0 p-3"><a class="d-block" href="home-fashion-store-v2.html" style="width: 250px;"><img src="{{img}}/home/preview/th02.jpg" alt="Fashion Store v.2"></a></div>
+                  </li>
+                  <li class="dropdown position-static mb-0"><a class="dropdown-item py-2" href="home-single-store.html"><span class="d-block text-heading">Single Product Store</span><small class="d-block text-muted">Single product / mono brand</small></a>
+                    <div class="dropdown-menu h-100 animation-none mt-0 p-3"><a class="d-block" href="home-single-store.html" style="width: 250px;"><img src="{{img}}/home/preview/th05.jpg" alt="Single Product / Brand Store"></a></div>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Shop</a>
+                <div class="dropdown-menu p-0">
+                  <div class="d-flex flex-wrap flex-sm-nowrap px-2">
+                    <div class="mega-dropdown-column pt-1 pt-lg-4 pb-4 px-2 px-lg-3">
+                      <div class="widget widget-links mb-4">
+                        <h6 class="fs-base mb-3">Shop layouts</h6>
+                        <ul class="widget-list">
+                          <li class="widget-list-item"><a class="widget-list-link" href="shop-grid-ls.html">Shop Grid - Left Sidebar</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="shop-grid-rs.html">Shop Grid - Right Sidebar</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="shop-grid-ft.html">Shop Grid - Filters on Top</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="shop-list-ls.html">Shop List - Left Sidebar</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="shop-list-rs.html">Shop List - Right Sidebar</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="shop-list-ft.html">Shop List - Filters on Top</a></li>
+                        </ul>
+                      </div>
+                      <div class="widget widget-links">
+                        <h6 class="fs-base mb-3">Marketplace</h6>
+                        <ul class="widget-list">
+                          <li class="widget-list-item"><a class="widget-list-link" href="marketplace-category.html">Category Page</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="marketplace-single.html">Single Item Page</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="marketplace-vendor.html">Vendor Page</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="marketplace-cart.html">Cart</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="marketplace-checkout.html">Checkout</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mega-dropdown-column pt-1 pt-lg-4 pb-4 px-2 px-lg-3">
+                      <div class="widget widget-links">
+                        <h6 class="fs-base mb-3">Shop pages</h6>
+                        <ul class="widget-list">
+                          <li class="widget-list-item"><a class="widget-list-link" href="shop-categories.html">Shop Categories</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="shop-single-v1.html">Product Page v.1</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="shop-single-v2.html">Product Page v.2</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="/usershopcart">Cart</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="checkout-details.html">Checkout - Details</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="checkout-shipping.html">Checkout - Shipping</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="checkout-payment.html">Checkout - Payment</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="checkout-review.html">Checkout - Review</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="checkout-complete.html">Checkout - Complete</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="order-tracking.html">Order Tracking</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="comparison.html">Product Comparison</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="mega-dropdown-column pt-1 pt-lg-4 pb-4 px-2 px-lg-3">
+                      <div class="widget widget-links mb-4">
+                        <h6 class="fs-base mb-3">Grocery store</h6>
+                        <ul class="widget-list">
+                          <li class="widget-list-item"><a class="widget-list-link" href="grocery-catalog.html">Product Catalog</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="grocery-single.html">Single Product Page</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="grocery-checkout.html">Checkout</a></li>
+                        </ul>
+                      </div>
+                      <div class="widget widget-links">
+                        <h6 class="fs-base mb-3">Food Delivery</h6>
+                        <ul class="widget-list">
+                          <li class="widget-list-item"><a class="widget-list-link" href="food-delivery-category.html">Category Page</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="food-delivery-single.html">Single Item (Restaurant)</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="food-delivery-cart.html">Cart (Your Order)</a></li>
+                          <li class="widget-list-item"><a class="widget-list-link" href="food-delivery-checkout.html">Checkout (Address &amp; Payment)</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">Account</a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Shop User Account</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="account-orders.html">Orders History</a></li>
+                      <li><a class="dropdown-item" href="account-profile.html">Profile Settings</a></li>
+                      <li><a class="dropdown-item" href="account-address.html">Account Addresses</a></li>
+                      <li><a class="dropdown-item" href="account-payment.html">Payment Methods</a></li>
+                      <li><a class="dropdown-item" href="account-wishlist.html">Wishlist</a></li>
+                      <li><a class="dropdown-item" href="account-tickets.html">My Tickets</a></li>
+                      <li><a class="dropdown-item" href="account-single-ticket.html">Single Ticket</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Vendor Dashboard</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="dashboard-settings.html">Settings</a></li>
+                      <li><a class="dropdown-item" href="dashboard-purchases.html">Purchases</a></li>
+                      <li><a class="dropdown-item" href="dashboard-favorites.html">Favorites</a></li>
+                      <li><a class="dropdown-item" href="dashboard-sales.html">Sales</a></li>
+                      <li><a class="dropdown-item" href="dashboard-products.html">Products</a></li>
+                      <li><a class="dropdown-item" href="dashboard-add-new-product.html">Add New Product</a></li>
+                      <li><a class="dropdown-item" href="dashboard-payouts.html">Payouts</a></li>
+                    </ul>
+                  </li>
+                  <li><a class="dropdown-item" href="account-signin.html">Sign In / Sign Up</a></li>
+                  <li><a class="dropdown-item" href="account-password-recovery.html">Password Recovery</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">Pages</a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Navbar Variants</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="navbar-1-level-light.html">1 Level Light</a></li>
+                      <li><a class="dropdown-item" href="navbar-1-level-dark.html">1 Level Dark</a></li>
+                      <li><a class="dropdown-item" href="navbar-2-level-light.html">2 Level Light</a></li>
+                      <li><a class="dropdown-item" href="navbar-2-level-dark.html">2 Level Dark</a></li>
+                      <li><a class="dropdown-item" href="navbar-3-level-light.html">3 Level Light</a></li>
+                      <li><a class="dropdown-item" href="navbar-3-level-dark.html">3 Level Dark</a></li>
+                      <li><a class="dropdown-item" href="home-electronics-store.html">Electronics Store</a></li>
+                      <li><a class="dropdown-item" href="home-marketplace.html">Marketplace</a></li>
+                      <li><a class="dropdown-item" href="home-grocery-store.html">Side Menu (Grocery)</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="about.html">About Us</a></li>
+                  <li><a class="dropdown-item" href="contacts.html">Contacts</a></li>
+                  <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Help Center</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="help-topics.html">Help Topics</a></li>
+                      <li><a class="dropdown-item" href="help-single-topic.html">Single Topic</a></li>
+                      <li><a class="dropdown-item" href="help-submit-request.html">Submit a Request</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">404 Not Found</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="404-simple.html">404 - Simple Text</a></li>
+                      <li><a class="dropdown-item" href="404-illustration.html">404 - Illustration</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="sticky-footer.html">Sticky Footer Demo</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">Blog</a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Blog List Layouts</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="blog-list-sidebar.html">List with Sidebar</a></li>
+                      <li><a class="dropdown-item" href="blog-list.html">List no Sidebar</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Blog Grid Layouts</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="blog-grid-sidebar.html">Grid with Sidebar</a></li>
+                      <li><a class="dropdown-item" href="blog-grid.html">Grid no Sidebar</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">Single Post Layouts</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="blog-single-sidebar.html">Article with Sidebar</a></li>
+                      <li><a class="dropdown-item" href="blog-single.html">Article no Sidebar</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Docs / Components</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="docs/dev-setup.html">
+                      <div class="d-flex">
+                        <div class="lead text-muted pt-1"><i class="ci-book"></i></div>
+                        <div class="ms-2"><span class="d-block text-heading">Documentation</span><small class="d-block text-muted">Kick-start customization</small></div>
+                      </div></a></li>
+                  <li class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="components/typography.html">
+                      <div class="d-flex">
+                        <div class="lead text-muted pt-1"><i class="ci-server"></i></div>
+                        <div class="ms-2"><span class="d-block text-heading">Components<span class="badge bg-info ms-2">40+</span></span><small class="d-block text-muted">Faster page building</small></div>
+                      </div></a></li>
+                  <li class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="docs/changelog.html">
+                      <div class="d-flex">
+                        <div class="lead text-muted pt-1"><i class="ci-edit"></i></div>
+                        <div class="ms-2"><span class="d-block text-heading">Changelog<span class="badge bg-success ms-2">v2.3.0</span></span><small class="d-block text-muted">Regular updates</small></div>
+                      </div></a></li>
+                  <li class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="mailto:support@createx.studio">
+                      <div class="d-flex">
+                        <div class="lead text-muted pt-1"><i class="ci-help"></i></div>
+                        <div class="ms-2"><span class="d-block text-heading">Support</span><small class="d-block text-muted">support@createx.studio</small></div>
+                      </div></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <header class="shadow-sm">
+      <div class="navbar-sticky bg-dark">
+        <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container">
+            <button class="btn d-none d-lg-block" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas"><div class="hamburger"><span class="line"></span><span class="line"></span><span class="line"></span></div></button>
+            <a class="navbar-brand flex-shrink-0" href="/"><img src="{{img}}/title.png" width="50" alt="Logo"></a>
+            <form class="tkdform1 w-100 pe-5" onsubmit="return productsearchlink(event);" method = "POST">
+              {% csrf_token %}
+              <div class="input-group d-flex mx-4">
+                <select class="form-select d-none d-md-block" name="productcatagory" id="productcatagory" oninput="searchitem(this)">             
+                  {% for key, values in userdeatails.productlist.items %}
+                  {% if userdeatails.Requirements.row == key %}
+                    <option value="{{key}}" selected>{{values}}</option>
+                  {% else %}
+                    <option value="{{key}}">{{values}}</option>
+                  {% endif %}
+                  {% endfor %}
+                </select>
+                <input class="form-control rounded-start rounded-md-0" name="searchinput" id="searchinput" type="text" placeholder="Buttons on the right" style="width: 33%;">
+                <input type="submit" value="🔍" id="submit" class="btn btn-white bg-white border btn-icon" style="font-size: 25px;padding: 2px;">
+              </div>
+            </form>
+            <div class="navbar-toolbar d-none d-lg-flex flex-shrink-0 align-items-center">
+              {% if userdeatails.id != 0 %}
+              <div class="navbar-tool dropdown ms-2">
+                <a class="navbar-tool-icon-box navbar-tool-icon-box-img border dropdown-toggle" href="/profile/1">
+                  <div class="Profile_detail_icon_img">
+                    <div><img src="/tkdproduct/{{userdeatails.userpic}}" alt="{{userdeatails.username}}"></div>
+                  </div>
+                </a>
+                <a class="navbar-tool-text ms-n2" href="/profile/1"><small>{{userdeatails.username}}</small>₹{{userdeatails.userrewardpoints}}</a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  {% for key, values in userdeatails.navlink.items %}
+                    {% for j in values %}
+                      <a class="dropdown-item d-flex align-items-center" href="{{j.link}}">
+                        <i class="{{j.icon}} opacity-60 me-2"></i>
+                        <span>{{j.name}}</span>
+                      </a>
+                    {% endfor %}
+                    <div class="dropdown-divider"></div>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="navbar-tool dropdown ms-3 d-none d-lg-flex">
+                <a class="navbar-tool-icon-box bg-tkdicon dropdown-toggle" href="/usershopcart">
+                  <span class="navbar-tool-label">{{userdeatails.Requirements.usershopcartno}}</span><i class="navbar-tool-icon ci-cart"></i>
+                </a>
+                <a class="navbar-tool-text ms-n2" href="/usershopcart"><small>My Cart</small>₹{{userdeatails.Requirements.usertotalprice}}</a>
+                {% if userdeatails.Requirements.usershopcartno == 0 %}
+                <div class="dropdown-menu dropdown-menu-end text-center py-4 px-3">
+                  <div style="width: 16rem;"><img class="d-inline-block mb-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACcCAIAAAB3FTesAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ1IDc5LjE2MzQ5OSwgMjAxOC8wOC8xMy0xNjo0MDoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDMxMDBDQzcwRTEyMTFFQTlDN0JDNTAzRUUyMzIxMDMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDMxMDBDQzgwRTEyMTFFQTlDN0JDNTAzRUUyMzIxMDMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozMkIwRDVENDBFMEYxMUVBOUM3QkM1MDNFRTIzMjEwMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0MzEwMENDNjBFMTIxMUVBOUM3QkM1MDNFRTIzMjEwMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pk3kXrQAABTwSURBVHja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" width="40" alt="Empty cart">
+                    <p class="fs-sm text-muted mb-0">Your cart is currently empty</p>
+                  </div>
+                </div>
+                {% else %}
+                <div class="dropdown-menu dropdown-menu-end">
+                  <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
+                    <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
+                      {% for i in userdeatails.Requirements.usershopcart %}
+                      <div class="widget-cart-item pb-2 border-bottom">
+                        <a class="btn-close text-danger" type="button" aria-label="Remove" href="/usershopcartsettings/{{i.id}}/0">
+                          <span aria-hidden="true">&times;</span>
+                        </a>
+                        <div class="d-flex align-items-center">
+                          <a class="flex-shrink-0" href="/productdetails/{{i.productdetails.id}}">
+                            <img src="/tkdproduct/{{i.productdetails.image}}" width="64" alt="{{i.productdetails.name}}">
+                          </a>
+                          <div class="ps-2">
+                            <h6 class="widget-product-title"><a href="/productdetails/{{i.productdetails.id}}">{{i.productdetails.name}}</a>
+                            </h6>
+                            <div class="widget-product-meta text-accent d-flex justify-content-between">
+                              <span>₹{{i.productdetails.price_save}} <span class="text-muted"><i class="fa-light fa-xmark fa-fw"></i> {{i.Productquantity}}</span></span>
+                              <span><i class="fa-regular fa-equals fa-fw"></i></span>
+                              <span><span><strong>₹{{i.total_price}}</strong></span></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
+                      <div class="fs-sm me-2 py-2">
+                        <span class="text-muted">Subtotal:</span>
+                        <span class="text-accent fs-base ms-1">₹{{userdeatails.Requirements.usertotalprice}}</span>
+                      </div>
+                      <a class="btn btn-outline-secondary btn-sm" href="/usershopcart">Expand cart<i class="ci-arrow-right ms-1 me-n1"></i></a>
+                    </div>
+                    <a class="btn btn-primary btn-sm d-block w-100" href="/usercheckoutshipping"><i class="ci-card me-2 fs-base align-middle"></i>Checkout</a>
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+              {% else %}
+              <a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="/tkdlogin" data-bs-toggle="tooltip" data-bs-placement="left" title="Login / Registration">
+                <div class="navbar-tool-icon-box bg-tkdicon"><i class="navbar-tool-icon fa-light fa-circle-user fa-fw"></i></div>
+                <div class="navbar-tool-text ms-n2"><small>Hello, Sign in</small>My Account</div>
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- <div class="navbar navbar-expand-lg navbar-dark bg-dark navbar-stuck-menu mt-n2 pt-0 pb-2">
+          <div class="container">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </header>
+    {% block content2 %}{% endblock content2 %}
+  </main>
+  <footer class="footer bg-dark pt-5">
+    <div class="container">
+      <div class="row pb-2">
+        <div class="col-md-4 col-sm-6">
+          <div class="widget widget-links widget-light pb-2 mb-4">
+            <h3 class="widget-title text-light">Shop departments</h3>
+            <ul class="widget-list">
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Sneakers &amp; Athletic</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Athletic Apparel</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Sandals</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Jeans</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Shirts &amp; Tops</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Shorts</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">T-Shirts</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Swimwear</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Clogs &amp; Mules</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Bags &amp; Wallets</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Accessories</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Sunglasses &amp; Eyewear</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Watches</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="widget widget-links widget-light pb-2 mb-4">
+            <h3 class="widget-title text-light">Account &amp; shipping info</h3>
+            <ul class="widget-list">
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Your account</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Shipping rates &amp; policies</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Refunds &amp; replacements</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Order tracking</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Delivery info</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Taxes &amp; fees</a></li>
+            </ul>
+          </div>
+          <div class="widget widget-links widget-light pb-2 mb-4">
+            <h3 class="widget-title text-light">About us</h3>
+            <ul class="widget-list">
+              <li class="widget-list-item"><a class="widget-list-link" href="#">About company</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Our team</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">Careers</a></li>
+              <li class="widget-list-item"><a class="widget-list-link" href="#">News</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="widget pb-2 mb-4">
+            <h3 class="widget-title text-light pb-1">Stay informed</h3>
+            <form class="subscription-form validate"
+              action="https://studio.us12.list-manage.com/subscribe/post?u=c7103e2c981361a6639545bd5&amp;amp;id=29ca296126"
+              method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+              <div class="input-group flex-nowrap"><i
+                  class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
+                <input class="form-control" type="email" name="EMAIL" placeholder="Your email" required>
+                <button class="btn btn-primary" type="submit" name="subscribe">Subscribe*</button>
+              </div>
+              <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input class="subscription-form-antispam" type="text" name="b_c7103e2c981361a6639545bd5_29ca296126"
+                  tabindex="-1">
+              </div>
+              <div class="form-text text-light opacity-50">*Subscribe to our newsletter to receive early discount
+                offers, updates and new products info.</div>
+              <div class="subscription-status"></div>
+            </form>
+          </div>
+          <div class="widget pb-2 mb-4">
+            <h3 class="widget-title text-light pb-1">Download our app</h3>
+            <div class="d-flex flex-wrap">
+              <div class="me-2 mb-2">
+                <a href="#" class="btn-market btn-apple" role="button">
+                  <span class="btn-market-subtitle">Download on the</span>
+                  <span class="btn-market-title">App Store</span>
+                </a>
+              </div>
+              <div class="mb-2">
+                <a href="#" class="btn-market btn-google" role="button">
+                  <span class="btn-market-subtitle">Download on the</span>
+                  <span class="btn-market-title">Google Play</span>
+                </a>
+              </div>
+              <div class="mb-2">
+                <a href="#" class="btn-market btn-windows" role="button">
+                  <span class="btn-market-subtitle">Download on the</span>
+                  <span class="btn-market-title">Windows Store</span>
+                </a>
+              </div>
+              <div class="mb-2">
+                <a href="#" class="btn-market btn-amazon" role="button">
+                  <span class="btn-market-subtitle">Order now at</span>
+                  <span class="btn-market-title">Amazon.com</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pt-5 bg-darker">
+      <div class="container">
+        <div class="row pb-3">
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="d-flex"><i class="ci-rocket text-primary" style="font-size: 2.25rem;"></i>
+              <div class="ps-3">
+                <h6 class="fs-base text-light mb-1">Fast and free delivery</h6>
+                <p class="mb-0 fs-ms text-light opacity-50">Free delivery for all orders over $200</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="d-flex"><i class="ci-currency-exchange text-primary" style="font-size: 2.25rem;"></i>
+              <div class="ps-3">
+                <h6 class="fs-base text-light mb-1">Money back guarantee</h6>
+                <p class="mb-0 fs-ms text-light opacity-50">We return money within 30 days</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="d-flex"><i class="ci-support text-primary" style="font-size: 2.25rem;"></i>
+              <div class="ps-3">
+                <h6 class="fs-base text-light mb-1">24/7 customer support</h6>
+                <p class="mb-0 fs-ms text-light">
+                  <a class="topbar-link" href="tel:00331697720">(00) 33 169 7720</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4">
+            <div class="d-flex"><i class="ci-card text-primary" style="font-size: 2.25rem;"></i>
+              <div class="ps-3">
+                <h6 class="fs-base text-light mb-1">Secure online payment</h6>
+                <p class="mb-0 fs-ms text-light opacity-50">We possess SSL / Secure сertificate</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="hr-light mb-5">
+        <div class="row pb-2">
+          <div class="col-md-6 text-center text-md-start mb-4">
+            <div class="text-nowrap mb-4">
+              <a class="d-inline-block align-middle mt-n1 me-3" href="#"><img class="d-block" src="{{img}}/title.png" width="117" alt="TKD"></a>
+              <!-- <div class="btn-group dropdown disable-autohide">
+                <button class="btn btn-outline-light border-light btn-sm dropdown-toggle px-2" type="button"
+                  data-bs-toggle="dropdown"><img class="me-2" src="{{img}}/flags/en.png" width="20" alt="English">Eng /
+                  $</button>
+                <ul class="dropdown-menu my-1">
+                  <li class="dropdown-item">
+                    <select class="form-select form-select-sm">
+                      <option value="usd">$ USD</option>
+                      <option value="eur">€ EUR</option>
+                      <option value="ukp">£ UKP</option>
+                      <option value="jpy">¥ JPY</option>
+                    </select>
+                  </li>
+                  <li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="{{img}}/flags/fr.png" width="20"
+                        alt="Français">Français</a></li>
+                  <li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="{{img}}/flags/de.png" width="20"
+                        alt="Deutsch">Deutsch</a></li>
+                  <li><a class="dropdown-item" href="#"><img class="me-2" src="{{img}}/flags/it.png" width="20"
+                        alt="Italiano">Italiano</a></li>
+                </ul>
+              </div> -->
+            </div>
+            <div class="widget widget-links widget-light">
+              <ul class="widget-list d-flex flex-wrap justify-content-center justify-content-md-start">
+                <li class="widget-list-item me-4"><a class="widget-list-link" href="#">Outlets</a></li>
+                <li class="widget-list-item me-4"><a class="widget-list-link" href="#">Affiliates</a></li>
+                <li class="widget-list-item me-4"><a class="widget-list-link" href="#">Support</a></li>
+                <li class="widget-list-item me-4"><a class="widget-list-link" href="#">Privacy</a></li>
+                <li class="widget-list-item me-4"><a class="widget-list-link" href="#">Terms of use</a></li>
+                <!-- <li class="widget-list-item me-4">
+                  <a class="widget-list-link" href="#">
+                    <i class="ci-support"></i>
+                    <span class="text-muted me-1">Support</span>
+                    <a class="topbar-link" href="tel:00331697720">(00) 33 169 7720</a>
+                  </a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 text-center text-md-end mb-4">
+            <div class="mb-3">
+              <a class="btn-social bs-facebook bs-light me-2 mb-2" href="#"><i class="ci-facebook"></i></a><a class="btn-social bs-twitter bs-light me-2 mb-2" href="#"><i class="ci-twitter"></i></a><a class="btn-social bs-instagram bs-light me-2 mb-2" href="#"><i class="ci-instagram"></i></a><a class="btn-social bs-google bs-light me-2 mb-2" href="#"><i class="ci-google"></i></a><a class="btn-social bs-linkedin bs-light me-2 mb-2" href="#"><i class="ci-linkedin"></i></a><a class="btn-social bs-pinterest bs-light me-2 mb-2" href="#"><i class="ci-pinterest"></i></a><a class="btn-social bs-tumblr bs-light me-2 mb-2" href="#"><i class="ci-tumblr"></i></a><a class="btn-social bs-behance bs-light me-2 mb-2" href="#"><i class="ci-behance"></i></a><a class="btn-social bs-dribbble bs-light me-2 mb-2" href="#"><i class="ci-dribbble"></i></a><a class="btn-social bs-vk bs-light me-2 mb-2" href="#"><i class="ci-vk"></i></a><a class="btn-social bs-odnoklassniki bs-light me-2 mb-2" href="#"><i class="ci-odnoklassniki"></i></a><a class="btn-social bs-skype bs-light me-2 mb-2" href="#"><i class="ci-skype"></i></a><a class="btn-social bs-hangouts bs-light me-2 mb-2" href="#"><i class="ci-hangouts"></i></a><a class="btn-social bs-messenger bs-light me-2 mb-2" href="#"><i class="ci-messenger"></i></a><a class="btn-social bs-viber bs-light me-2 mb-2" href="#"><i class="ci-viber"></i></a><a class="btn-social bs-telegram bs-light me-2 mb-2" href="#"><i class="ci-telegram"></i></a><a class="btn-social bs-youtube bs-light me-2 mb-2" href="#"><i class="ci-youtube"></i></a><a class="btn-social bs-youtube bs-light me-2 mb-2" href="#"><i class="ci-youtube-outline"></i></a><a class="btn-social bs-vimeo bs-light me-2 mb-2" href="#"><i class="ci-vimeo"></i></a><a class="btn-social bs-wechat bs-light me-2 mb-2" href="#"><i class="ci-wechat"></i></a><a class="btn-social bs-discord bs-light me-2 mb-2" href="#"><i class="ci-discord"></i></a><a class="btn-social bs-tiktok bs-light me-2 mb-2" href="#"><i class="ci-tiktok"></i></a><a class="btn-social bs-whatsapp bs-light me-2 mb-2" href="#"><i class="ci-whatsapp"></i></a>
+            </div>
+            <!-- <img class="d-inline-block" src="{{img}}/paymentcard/cards.png" width="187" alt="Payment methods"> -->
+          </div>
+        </div>
+        <div class="pb-4 fs-xs text-light opacity-50 text-center text-md-start">© All rights reserved. Made by <a
+            class="text-light" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a></div>
+      </div>
+    </div>
+  </footer>
+  <div class="handheld-toolbar">
+    <div class="d-table table-layout-fixed w-100">
+      <a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas"><span class="handheld-toolbar-icon"><i class="ci-menu"></i></span><span class="handheld-toolbar-label">Menu</span></a>
+      {% if userdeatails.id != 0 %}
+      <a class="d-table-cell handheld-toolbar-item p-0" href="/profile/1">
+        <div class="d-flex flex-column align-items-center">
+          <span class="handheld-toolbar-icon">
+            <div class="Profile_detail_icon_img navbar-tool-icon-box navbar-tool-icon-box-img border" style="width: 2.5rem;height: 2.5rem;">
+              <div><img src="/tkdproduct/{{userdeatails.userpic}}" alt="{{userdeatails.username}}"></div>
+            </div>
+          </span>
+          <span class="handheld-toolbar-label"><small>{{userdeatails.username}}</small></span>
+        </div>
+      </a>
+      <a class="d-table-cell handheld-toolbar-item" href="/usershopcart"><span class="handheld-toolbar-icon"><i class="ci-cart"></i><span class="badge bg-primary rounded-pill ms-1">{{userdeatails.Requirements.usershopcartno}}</span></span><span class="handheld-toolbar-label">₹{{userdeatails.Requirements.usertotalprice}}</span></a>
+      {% else %}
+      <a class="d-table-cell handheld-toolbar-item" href="/tkdlogin"><span class="handheld-toolbar-icon"><i class="fa-light fa-circle-user fa-fw"></i></span><span class="handheld-toolbar-label">Login / Sign up</span></a>
+      {% endif %}
+      {% block contentfooter %}{% endblock contentfooter %}
+    </div>
+  </div>
+  <a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up"></i></a>
+  <script src="{{js}}/jquery.js"></script>
+  <script src="{{vendor}}/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{vendor}}/simplebar/dist/simplebar.min.js"></script>
+  <script src="{{vendor}}/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="{{vendor}}/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+  <script src="{{vendor}}/drift-zoom/dist/Drift.min.js"></script>
+  <script src="{{vendor}}/prismjs/components/prism-core.min.js"></script>
+  <script src="{{vendor}}/prismjs/components/prism-markup.min.js"></script>
+  <script src="{{vendor}}/prismjs/components/prism-clike.min.js"></script>
+  <script src="{{vendor}}/prismjs/components/prism-javascript.min.js"></script>
+  <script src="{{vendor}}/prismjs/components/prism-pug.min.js"></script>
+  <script src="{{vendor}}/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+  <script src="{{vendor}}/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+  <script src="{{vendor}}/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  {% block js %}{% endblock js %}
+  <script src="{{js}}/theme.min.js"></script>
+</body>
+</html>

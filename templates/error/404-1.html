@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">{% load static %}
+{% static "img" as img %}
+{% static "css" as css %}
+{% static "js" as js %}
+{% static "vendor" as vendor %}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="TheKoushikDurgas" />
+    <meta name="description" content="TKD Market - E-Commerce Site" />
+    <meta name="keywords" content="bootstrap, business, creative agency, construction, services, e-commerce, shopping cart, mobile app showcase, multipurpose, shop, ui kit, marketing, seo, landing, html5, css3, javascript, gallery, slider, touch, creative" />
+    <meta name="theme-color" content="#fe6100">
+    <meta name="msapplication-TileColor" content="#2c0101">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>{{userdeatails.usertype}} | TKD Market || E-Commerce Site</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{img}}/title.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{img}}/title.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{img}}/title.png">
+    <link rel="mask-icon" color="#5bbad5" href="{{img}}/title.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{img}}/title.png">
+    <link rel="stylesheet" media="screen" href="{{css}}/index.css">
+    <link rel="stylesheet" media="screen" href="{{vendor}}/simplebar/dist/simplebar.min.css" />
+    <link rel="stylesheet" media="screen" href="{{vendor}}/tiny-slider/dist/tiny-slider.css" />
+    <link rel="stylesheet" media="screen" href="{{css}}/theme.min.css">
+</head>
+
+<body class="handheld-toolbar-enabled">
+    <main class="page-wrapper d-flex justify-content-center align-items-center">
+        <div class="container py-5">
+            <div class="row justify-content-center pt-lg-4 text-center">
+                <div class="col-lg-5 col-md-7 col-sm-9"><img class="d-block mx-auto mb-5" src="{{img}}/pages/404.png"
+                        width="340" alt="404 Error">
+                    <h1 class="h3">404 error</h1>
+                    <h3 class="h5 fw-normal mb-4">We can't seem to find the page you are looking for.</h3>
+                    <p class="fs-md mb-4"><u>Here are some helpful links instead:</u></p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-10">
+                    <div class="row">
+                        <div class="col-sm-4 mb-3"><a class="card h-100 border-0 shadow" href="/">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center"><i class="ci-home text-primary h4 mb-0"></i>
+                                        <div class="ps-3">
+                                            <h5 class="fs-sm mb-0">Homepage</h5><span class="text-muted fs-ms">Return to
+                                                homepage</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="col-sm-4 mb-3"><a class="card h-100 border-0 shadow" href="/">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center"><i
+                                            class="ci-search text-success h4 mb-0"></i>
+                                        <div class="ps-3">
+                                            <h5 class="fs-sm mb-0">Search</h5><span class="text-muted fs-ms">Find with
+                                                advanced search</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="col-sm-4 mb-3"><a class="card h-100 border-0 shadow" href="/help_topics">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center"><i class="ci-help text-info h4 mb-0"></i>
+                                        <div class="ps-3">
+                                            <h5 class="fs-sm mb-0">Help &amp; Support</h5><span
+                                                class="text-muted fs-ms">Visit our help center</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main><a class="btn-scroll-top" href="#top" data-scroll><span
+            class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i
+            class="btn-scroll-top-icon ci-arrow-up"></i></a>
+    <script src="{{js}}/jquery.js"></script>
+    <script src="{{vendor}}/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{vendor}}/simplebar/dist/simplebar.min.js"></script>
+    <script src="{{vendor}}/tiny-slider/dist/min/tiny-slider.js"></script>
+    <script src="{{vendor}}/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="{{js}}/theme.min.js"></script>
+</body>
+
+</html>

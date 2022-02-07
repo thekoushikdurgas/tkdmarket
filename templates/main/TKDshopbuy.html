@@ -1,0 +1,33 @@
+{% extends 'main/TKD.html' %}
+{% load static %}
+{% block content2 %}
+<div class="page-title-overlap bg-dark pt-3">
+</div>
+<div class="container pb-5 mb-2 mb-md-4">
+  <div class="row">
+    <div class="col-lg-8">
+      {% block contentaddpayre %}{% endblock contentaddpayre %}
+      <div class="d-none d-lg-flex pt-4">
+        {% block contentaddpayrebutton1 %}{% endblock contentaddpayrebutton1 %}
+      </div>
+    </div>
+    <div class="col-lg-4 pt-4 pt-lg-0 ps-xl-5">
+      <div class="bg-white rounded-3 shadow p-4 ms-lg-auto">
+        <div class="py-2 px-xl-2">
+          {% block contentaddpayresidebar %}{% endblock contentaddpayresidebar %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row d-lg-none">
+    <div class="col-lg-8">
+      <div class="d-flex pt-4 mt-3">
+        {% block contentaddpayrebutton2 %}{% endblock contentaddpayrebutton2 %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content2 %}
+{% block js %}
+<script src="{% static 'js/shopcart.js' %}"></script>
+{% endblock js %}

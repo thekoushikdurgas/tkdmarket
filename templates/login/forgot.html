@@ -1,0 +1,99 @@
+{% extends 'login/login.html' %}
+{% load static %}
+{% static "img" as img %}
+{% block content2 %}
+<div class="d-flex flex-column flex-root">
+	<div class="login login-4 wizard d-flex flex-column flex-lg-row flex-column-fluid wizard">
+		<div class="login-container d-flex flex-center flex-row flex-row-fluid order-2 order-lg-1 flex-row-fluid bg-white py-lg-0 pb-lg-0 pt-15 pb-12">
+			<div class="login-content login-content-signup d-flex flex-column-auto flex-column px-10">
+				<a href="{% url 'home' %}" class="login-logo"><img src="{{img}}/title.png" class="max-h-70px" alt=""></a>
+				<div class="login-form">
+					<form class="form" id="kt_login_forgot_form" action="#">
+						<div class="pb-5 pb-lg-15">
+							<div class="font-weight-bolder text-dark font-size-h2 font-size-h1-l font-weight-bold text-center">TKD Market</div>
+							<h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg text-center">Forgotten Password ?</h3>
+							<div class="timeline timeline-6 mt-3">
+								<div class="timeline-item align-items-start">
+									<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">1.</div>
+									<div class="timeline-badge"><i class="fa fa-genderless text-warning icon-xl"></i></div>
+									<div class="font-weight-mormal font-size-lg timeline-content text-muted pl-3">Fill in your email address below.</div>
+								</div>
+								<div class="timeline-item align-items-start">
+									<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">2.</div>
+									<div class="timeline-badge"><i class="fa fa-genderless text-success icon-xl"></i></div>
+									<div class="timeline-content d-flex"><span class="font-weight-bolder text-dark-75 pl-3 font-size-lg">We'll email you a temporary code.</span></div>
+								</div>
+								<div class="timeline-item align-items-start">
+									<div class="timeline-label font-weight-bolder text-dark-75 font-size-lg">3.</div>
+									<div class="timeline-badge"><i class="fa fa-genderless text-danger icon-xl"></i></div>
+									<div class="timeline-content font-weight-bolder font-size-lg text-dark-75 pl-3">Use the code to change your password on our secure website.</div>
+								</div>
+							</div>
+							<p class="text-muted font-weight-bold font-size-lg text-center">Change your password in three easy steps. This helps to keep your new password secure.</p>
+							<p class="text-muted font-weight-bold font-size-h4 text-center">Enter your email to reset your password</p>
+						</div>
+						<div class="form-group">
+							<input class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6" type="email" placeholder="Email" name="email" autocomplete="off" />
+						</div>
+						<div class="form-group d-flex flex-wrap justify-content-center">
+							<button type="submit" id="kt_login_forgot_form_submit_button" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4">Get new password</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content2 %}
+{% block js %}
+<script>
+	var KTLogin = function() {
+		var _buttonSpinnerClasses = 'spinner spinner-right spinner-white pr-15';
+		var _handleFormSignin = function() {
+			var form = KTUtil.getById('kt_login_singin_form');
+			var formSubmitButton = KTUtil.getById('kt_login_singin_form_submit_button');
+			if (!form) {return;}
+			FormValidation.formValidation(form,{
+						fields: {
+							username: {validators: {notEmpty: {message: 'Username is required'}}},
+							password: {validators: {notEmpty: {message: 'Password is required'}}},
+						},
+						plugins: {
+							trigger: new FormValidation.plugins.Trigger(),
+							submitButton: new FormValidation.plugins.SubmitButton(),
+							bootstrap: new FormValidation.plugins.Bootstrap({eleInvalidClass: '',eleValidClass: '',})
+						}
+					}
+				).on('core.form.valid', function() {
+					KTUtil.btnWait(formSubmitButton, _buttonSpinnerClasses, "Please wait");
+					setTimeout(function() {KTUtil.btnRelease(formSubmitButton);}, 2000);
+					var frm = $('#kt_login_singin_form');
+					$.ajax({
+						type: frm.attr('method'),
+						url: frm.attr('action'),
+						data: frm.serialize(),
+						success: function (tdata) {
+							if(tdata == "password wrong" || tdata == "No Username"){
+								Swal.fire({
+									text: "Sorry, "+tdata,
+									icon: "error",
+									buttonsStyling: false,
+									confirmButtonText: "Ok, got it!",
+									customClass: {
+										confirmButton: "btn font-weight-bold btn-light-primary"
+									}
+								})
+							}else{ 
+								sleep(1000).then((() => {
+									location.href = ""+(tdata=="../../../"?"/":tdata);
+								}));}
+						}
+					});
+					return false;
+				});
+		}
+		return {init: function() {_handleFormSignin();}};
+	}();
+	jQuery(document).ready(function() {KTLogin.init();});
+</script>
+{% endblock js %}

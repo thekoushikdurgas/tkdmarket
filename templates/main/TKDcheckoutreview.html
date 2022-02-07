@@ -1,0 +1,31 @@
+{% extends 'main/TKDshopbuy.html' %}
+{% load static %}
+{% block contentaddpayre %}
+<!-- <div class="tkdheading w-100 my-3 d-flex"><span class="m-auto w-auto bg-white border rounded-3 shadow py-2 px-3">Review your order</span></div> -->
+<div class="bg-white border rounded-3 shadow mb-3">
+    {% block contentaddpayresidebareview %}{% endblock contentaddpayresidebareview %}
+</div>
+<div class="shadow rounded-3 px-4 pt-4 pb-2">
+  <div class="row">
+    <div class="col-sm-6">
+      <h4 class="h6">Shipping to:</h4>
+      <ul class="list-unstyled fs-sm">
+        {% for i in userdeatails.Requirements.addressoptionlist %}
+        <li><span class="text-muted">Client:&nbsp;</span>{{i.username}}</li>
+        <li><span class="text-muted">Address:&nbsp;</span>{{i.useraddress}}, {{i.usercity}}, {{i.userzipcode}}, {{i.userstate}}, {{i.usercountry}}</li>
+        <li><span class="text-muted">Phone:&nbsp;</span>{{userdeatails.userphone}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <h4 class="h6">Payment method:</h4>
+      <ul class="list-unstyled fs-sm">
+          {% for i in userdeatails.Requirements.paymentoptionlist %}
+          <li><span class="text-muted">Name:&nbsp;</span>{{i.usercardname}}</li>
+          <li><span class="text-muted">Card no.:&nbsp;</span>{{i.usercardnumber_format}}</li>
+          {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock contentaddpayre %}

@@ -1,0 +1,84 @@
+{% extends 'main/TKD.html' %}
+{% load static %}
+{% block content2 %}
+<div class="page-title-overlap bg-dark pt-3">
+</div>
+<div class="container pb-5 mb-2 mb-md-4">
+  <!-- <div class="steps steps-light pt-2 pb-3 mb-1">
+    {% for i in userdeatails.Requirements.shopcspr %}
+    <a class="step-item {{i.class}}" href="{{i.link}}"><div class="step-progress"><span class="step-count" data-bs-toggle="tooltip" data-bs-placement="top" title="{{i.title}}"><i class="{{i.icon}}"></i></span></div></a>
+    {% endfor %}
+  </div>
+  <div class="tkdheading w-100 my-3 d-flex"><span class="m-auto w-auto bg-white border rounded-3 shadow py-2 px-3">My Carts</span></div> -->
+  <div class="bg-white border rounded-3 shadow mb-3">
+      {% for i in userdeatails.Requirements.usershopcart %}
+      <div class="row m-1 p-4 border-bottom">
+        <div class="col-sm-3 text-center align-self-center">
+          <img src="/tkdproduct/{{i.productdetails.image}}" alt="{{i.productdetails.name}}" srcset="" class="img-fluid" height="150" width="150">
+        </div>
+        <div class="col-sm-9">
+         <div>
+          <h3 class="product-title fs-base mb-2"><a href="/productdetails/{{i.productdetails.id}}">{{i.productdetails.name}}</a></h3>
+          <div class="my-3">
+           <!-- <label for="quantity">Quantity:</label> -->
+           <form class="form needs-validation lenghtform" action="/usershopcartsettings/{{i.id}}/1" method="POST" novalidate id="addaddressform">
+             {% csrf_token %}
+             <div class="input-group">
+              <a class="btn btn-outline-danger btn-sm d-flex justify-content-between align-items-center" type="button" inputno="{{i.productnos}}" onclick="decrementincrement(this,false)"><i class="fa-solid fa-minus fa-fw"></i></a>
+              <input class="form-control lenghtvalue" type="number" id="quantity{{i.id}}" name="quantity{{i.id}}" min="1" value="{{i.Productquantity}}" readonly="">
+              <a class="btn btn-outline-success btn-sm d-flex justify-content-between align-items-center" type="button" inputno="{{i.productnos}}" onclick="decrementincrement(this,true)"><i class="fa-solid fa-plus fa-fw"></i></a>
+            </div>
+           </form>
+          </div> 
+          <div class="widget-product-meta text-accent d-flex justify-content-between mb-2">
+              <span>₹{{i.productdetails.price_save}} <span class="text-muted"><i class="fa-light fa-xmark fa-fw"></i> <span class="userProductquantity">{{i.Productquantity}}</span></span></span>
+              <span><i class="fa-regular fa-equals fa-fw"></i></span>
+              <span><span><strong class="totalpricestrong">₹{{i.total_price}}</strong></span></span>
+          </div>
+         </div>
+        </div>
+        <div class="d-flex w-100">
+          <div class="w-50 pe-3"><a class="btn btn-danger d-block w-100 py-2 px-1" href="/usershopcartsettings/{{i.id}}/0"><i class="ci-close-circle mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Remove item</span><span class="d-inline d-sm-none">Remove</span></a></div>
+          <div class="w-50 ps-2"><a class="btn btn-success d-block w-100 py-2 px-1" href="/usershopcartsettings/{{i.id}}/2"><i class="fa-light fa-cart-circle-arrow-up fa-fw me-1"></i><span class="d-none d-sm-inline">Move to Wishlist</span><span class="d-inline d-sm-none">Wishlist</span></a></div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="page-wrapper p-4 pt-4 pt-lg-0 ps-xl-5">
+        <div class="py-2 px-xl-2">
+          <div class="mb-4 pb-3 w-100 d-flex">
+            <h2 class="w-50 text-end h6 mb-3 pb-1">Subtotal</h2>
+            <h3 class="w-50 text-end fw-normal" id="usertotalprice">₹{{userdeatails.Requirements.usertotalprice}}</h3>
+          </div>
+          <div class="d-flex pt-4 mt-3">
+            <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/"><i class="ci-arrow-left mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Continue Shopping</span><span class="d-inline d-sm-none">Shopping</span></a></div>
+            <div class="w-50 ps-2"><a class="btn btn-primary d-block w-100 py-2 px-1" href="/usercheckoutshipping"><span class="d-none d-sm-inline">Proceed to Checkout</span><span class="d-inline d-sm-none">Checkout</span><i class="ci-arrow-right mt-sm-0 ms-1"></i></a></div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="bg-white border rounded-3 shadow mb-3">
+    {% for i in userdeatails.Requirements.usershopwishlist %}
+    <div class="d-sm-flex justify-content-between border-bottom m-1 p-4">
+        <div class="d-sm-flex text-center text-sm-start">
+            <a class="d-inline-block flex-shrink-0 mx-auto me-sm-4" href="/productdetails/{{i.productdetails.id}}"><img src="/tkdproduct/{{i.productdetails.image}}" width="160" alt="{{i.productdetails.name}}"></a>
+            <div class="d-flex flex-column justify-content-around">
+            <h3 class="product-title fs-base mb-2"><a href="/productdetails/{{i.productdetails.id}}">{{i.productdetails.name}}</a></h3>
+            <div class="widget-product-meta text-accent d-flex justify-content-between mb-2">
+                <span>₹{{i.productdetails.price_save}} <span class="text-muted"><i class="fa-light fa-xmark fa-fw"></i> {{i.Productquantity}}</span></span>
+                <span><i class="fa-regular fa-equals fa-fw"></i></span>
+                <span><span><strong>₹{{i.total_price}}</strong></span></span>
+            </div>
+            </div>
+        </div>
+        <div class="d-flex flex-sm-column justify-content-sm-around justify-content-around">
+            <a href="/addwishlist/{{i.id}}/2" class="btn btn-success btn-sm"><i class="fa-light fa-cart-circle-arrow-down fa-fw me-1"></i><span class="d-none d-sm-inline">Move to cart</span><span class="d-inline d-sm-none">Cart</span></a>
+            <a href="/addwishlist/{{i.id}}/0" class="btn btn-danger btn-sm"><i class="ci-close-circle mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Remove item</span><span class="d-inline d-sm-none">Remove</span></a>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content2 %}
+{% block js %}
+<script src="{% static 'js/shopcart.js' %}"></script>
+{% endblock js %}

@@ -1,0 +1,32 @@
+{% extends 'main/TKDcheckoutpayment.html' %}
+{% load static %}
+{% block contentaddpayrebutton1 %}
+<div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/userbuyproduct/{{userdeatails.Requirements.userbuyproductdeatailsid}}"><i class="ci-arrow-left mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Back to Checkout</span><span class="d-inline d-sm-none">Checkout</span></a></div>
+<div class="w-50 ps-2"><a class="btn btn-primary d-block w-100 py-2 px-1" onclick="tkdpaymentoptionbuttom1();"><span class="d-none d-sm-inline">Proceed to Payment</span><span class="d-inline d-sm-none">Payment</span><i class="ci-arrow-right mt-sm-0 ms-1"></i></a></div>
+{% endblock contentaddpayrebutton1 %}
+{% block contentaddpayrebutton2 %}
+<div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/userbuyproduct/{{userdeatails.Requirements.userbuyproductdeatailsid}}"><i class="ci-arrow-left mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Back to Checkout</span><span class="d-inline d-sm-none">Checkout</span></a></div>
+<div class="w-50 ps-2"><a class="btn btn-primary d-block w-100 py-2 px-1" onclick="tkdpaymentoptionbuttom1();"><span class="d-none d-sm-inline">Review your order</span><span class="d-inline d-sm-none">Review order</span><i class="ci-arrow-right mt-sm-0 ms-1"></i></a></div>
+{% endblock contentaddpayrebutton2 %}
+{% block contentaddpayresidebar %}
+{% for i in userdeatails.Requirements.userbuyproductdeatails %}
+<div class="widget mb-3">
+  <h2 class="widget-title text-center">Order summary</h2>
+  <div class="d-flex align-items-center pb-2 border-bottom"><a class="d-block flex-shrink-0" href="/productdetails/{{i.id}}"><img src="/tkdproduct/{{i.image}}" width="64" alt="{{i.name}}"></a><div class="ps-2 w-100"><h6 class="widget-product-title"><a href="/productdetails/{{i.id}}">{{i.name}}</a></h6><div class="widget-product-meta text-accent d-flex justify-content-between"><span>₹{{i.price_save}} <span class="text-muted"><i class="fa-light fa-xmark fa-fw"></i>{{i.Productquantity}}</span></span><span><i class="fa-regular fa-equals fa-fw"></i></span><span><span><strong>₹{{i.price_save}}</strong></span></span></div></div></div>
+</div>
+<ul class="list-unstyled fs-sm pb-2 border-bottom">
+  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Subtotal:</span><span class="text-end">₹{{i.usertotalprice}}</span></li>
+  <li class="d-flex justify-content-between align-items-center"><span class="me-2">GST:</span><span class="text-end">₹{{i.usertotalpricegst}}</span></li>
+  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Shipping:</span><span class="text-end">₹100.00</span></li>
+  <li class="d-flex justify-content-between align-items-center"><span class="me-2">Discount:</span><span class="text-end">—</span></li>
+</ul>
+<h3 class="fw-normal text-center my-4">₹{{i.useralltotalprice}}</h3>
+<form class="needs-validation" method="post" novalidate>
+  <div class="mb-3">
+    <input class="form-control" type="text" placeholder="Promo code" required>
+    <div class="invalid-feedback">Please provide promo code.</div>
+  </div>
+  <button class="btn btn-outline-primary d-block w-100" type="submit">Apply promo code</button>
+</form>
+{% endfor %}
+{% endblock contentaddpayresidebar %}

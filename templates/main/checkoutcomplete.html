@@ -1,0 +1,23 @@
+{% extends 'main/TKD.html' %}
+{% load static %}
+{% block content2 %}
+<div class="page-title-overlap bg-dark pt-4">
+</div>
+<div class="container pb-5 mb-sm-4">
+    <div class="card py-3 rounded-3 shadow">
+      <div class="card-body text-center">
+        <h2 class="h4 pb-3">Thank you for your order!</h2>
+        <p class="fs-sm mb-2">Your order has been placed and will be processed as soon as possible.</p>
+        <p class="fs-sm mb-2">Make sure you make note of your order number, which is <a class='fw-medium' href="/order/{{userdeatails.Requirements.orderidgen}}">{{userdeatails.Requirements.orderidgen}}</a></p>
+        <p class="fs-sm">You will be receiving an email shortly with confirmation of your order. <u>You can now:</u></p>
+        <div class="d-flex pt-4 mt-3 w-100">
+          <div class="w-50 pe-3"><a class="btn btn-secondary d-block w-100 py-2 px-1" href="/"><i class="ci-arrow-left mt-sm-0 me-1"></i><span class="d-none d-sm-inline">Go back shopping</span><span class="d-inline d-sm-none">Shopping</span></a></div>
+          <div class="w-50 ps-2"><a class="btn btn-primary d-block w-100 py-2 px-1" href="/order/{{userdeatails.Requirements.orderidgen}}"><i class="ci-location mt-sm-0 ms-1"></i><span class="d-none d-sm-inline">&nbsp;Track order</span><span class="d-inline d-sm-none">Track order</span></a></div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock content2 %}
+{% block js %}
+<script src="{% static 'js/shopcart.js' %}"></script>
+{% endblock js %}

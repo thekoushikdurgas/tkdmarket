@@ -1,0 +1,77 @@
+{% extends 'main/dashboard.html' %}
+{% block content3 %}
+<!-- <div class="tab-content"> -->
+  <div class="tab-pane fade show active">
+    {% for i in userdeatails.Requirements.addresslists %}
+    <form class="form needs-validation" action="/editaddresslist/{{i.id}}" method="POST" novalidate id="addaddressform">
+      {% csrf_token %}
+      <div class="row gx-4 gy-3">
+        <div class="col-sm-12">
+          <label class="form-label" for="address-fn">Full name (First and Last name)</label>
+          <input class="form-control" type="text" id="address-fn" name="address-fn" value="{{i.username}}" required>
+          <div class="invalid-feedback">Please enter a name.</div>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label" for="address-country">Country/Region</label>
+          <select class="form-select" id="address-country" name="address-country" required>
+            <option value="">Select country</option>
+            {% for j in userdeatails.Requirements.countrylist %}
+            {% if i.usercountry == j.countryname %}
+            <option value="{{j.countryname}}" selected>{{j.countryname}}</option>
+            {% else %}
+            <option value="{{j.countryname}}">{{j.countryname}}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+          <div class="invalid-feedback">Please select your country!</div>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label" for="address-state">State/Province/Region</label>
+          <select class="form-select" id="address-state" name="address-state" required>
+            <option value="">Select a State</option>
+            {% for j in userdeatails.Requirements.continentlist %}
+            {% if i.userstate == j.continentname %}
+            <option value="{{j.continentname}}" selected>{{j.continentname}}</option>
+            {% else %}
+            <option value="{{j.continentname}}">{{j.continentname}}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+          <div class="invalid-feedback">Please select your state!</div>
+        </div>
+        <div class="col-sm-12">
+          <label class="form-label" for="address-line">Line 1</label>
+          <input class="form-control" type="text" id="address-line" name="address-line" value="{{i.useraddress}}" required>
+          <div class="invalid-feedback">Please enter an address.</div>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label" for="address-city">City</label>
+          <input class="form-control" type="text" id="address-city" name="address-city" value="{{i.usercity}}" required>
+          <div class="invalid-feedback">Please enter a city name.</div>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label" for="address-zip">ZIP code</label>
+          <input class="form-control" type="text" id="address-zip" name="address-zip" value="{{i.userzipcode}}" required>
+          <div class="invalid-feedback">lease enter a ZIP or postal code.</div>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            {% if i.useraddressprimary %}
+            <input class="form-check-input" type="checkbox" id="address-primary" name="address-primary" checked>
+            {% else %}
+            <input class="form-check-input" type="checkbox" id="address-primary" name="address-primary">
+            {% endif %}
+            <label class="form-check-label" for="address-primary">Make this address primary</label>
+          </div>
+        </div>
+      </div>        
+      <div class="col-12 mt-2 mb-3">
+        <div class="d-flex flex-wrap justify-content-between align-items-center">
+          <button class="btn btn-primary mt-3 mt-sm-0 mt-4 d-block w-100" type="submit" id="addaddressbutton">Add address</button>
+        </div>
+      </div>
+    </form>
+    {% endfor %}
+  </div>
+<!-- </div> -->
+{% endblock content3 %}
